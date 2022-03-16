@@ -6,7 +6,6 @@
 * Copyright (c) 2022 creativeLabs Łukasz Holeczek
 * Licensed under MIT (https://coreui.io/license)
 -->
-<!-- Breadcrumb-->
 <html lang="en">
   <head>
     <base href="./">
@@ -16,7 +15,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>CoreUI Free Bootstrap Admin Template</title>
+    <title><?= $this->renderSection('title'); ?> - SIAP</title>
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -37,6 +36,7 @@
     <!-- Vendors styles-->
     <link rel="stylesheet" href="<?= base_url('vendors/simplebar/css/simplebar.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/vendors/simplebar.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('vendors/fontawesome/css/all.min.css'); ?>">
     <!-- Main styles for this application-->
     <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
     <?= $this->renderSection('styles'); ?>
@@ -46,15 +46,15 @@
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
       <?= $this->include('layouts/_partials/header'); ?>
       <div class="body flex-grow-1 px-3">
-        <div class="container-lg">
-        </div>
+        <?= $this->include('layouts/_partials/notification'); ?>
+        <?= $this->renderSection('content'); ?>
       </div>
       <?= $this->include('layouts/_partials/footer'); ?>
     </div>
     <!-- CoreUI and necessary plugins-->
+    <script src="<?= base_url('vendors/jquery/jquery-3.6.0.min.js'); ?>"></script>
     <script src="<?= base_url('vendors/@coreui/coreui/js/coreui.bundle.min.js') ?>"></script>
     <script src="<?= base_url('vendors/simplebar/js/simplebar.min.js') ?>"></script>
     <?= $this->renderSection('scripts'); ?>
-
   </body>
 </html>

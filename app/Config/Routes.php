@@ -33,6 +33,22 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Routes Akun
+$routes->group('akun', function($routes){
+    $routes->get('/', 'AkunController::index');
+    $routes->post('create', 'AkunController::create');
+    $routes->put('edit/(:any)', 'AkunController::edit/$1');
+    $routes->delete('delete/(:any)', 'AkunController::delete/$1');
+});
+
+// Routes Pengguna
+$routes->group('pengguna', function($routes) {
+    $routes->get('/', 'PenggunaController::index');
+    $routes->post('create', 'PenggunaController::create');
+    $routes->put('edit/(:any)', 'PenggunaController::edit/$1');
+    $routes->delete('delete/(:any)', 'PenggunaController::delete/$1');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

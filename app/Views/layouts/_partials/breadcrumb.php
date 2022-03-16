@@ -2,9 +2,11 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item">
-            <!-- if breadcrumb is single--><span>Home</span>
+            <a href="<?= $breadcrumb['mainUrl']; ?>" style="text-decoration: none;"><span><?= $breadcrumb['mainName']; ?></span></a>
             </li>
-            <li class="breadcrumb-item active"><span>Blank</span></li>
+            <?php if(isset($breadcrumb['selectedMenu'])) : ?>
+            <li class="breadcrumb-item active"><span><?= $breadcrumb['selectedMenu']; ?></span></li>
+            <?php endif ?>
         </ol>
     </nav>
 </div>

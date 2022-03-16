@@ -46,7 +46,18 @@ class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
+        
 
         // E.g.: $this->session = \Config\Services::session();
+        session();
+    }
+
+    protected function breadcrumb($selectedMenu = null)
+    {
+        return [
+            'mainUrl' => base_url('/'),
+            'mainName' => 'SIAP',
+            'selectedMenu' => $selectedMenu
+        ];
     }
 }

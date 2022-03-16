@@ -40,4 +40,25 @@ class Validation
     //--------------------------------------------------------------------
     // Rules
     //--------------------------------------------------------------------
+    public $createAkun = [
+        'id_akun' => 'required|is_unique[akun.id_akun]',
+        'nama_akun' => 'required|is_unique[akun.nama_akun]',
+        'jenis_akun' => 'required'
+    ];
+
+    public $editAkun = [
+        'id_akun' => 'required|is_unique[akun.id_akun,id_akun,{id_akun}]',
+        'nama_akun' => 'required|is_unique[akun.nama_akun,id_akun,{id_akun}]',
+        'jenis_akun' => 'required'
+    ];
+
+    public $createPengguna = [
+        'nama_pengguna' => 'required',
+        'tanggal_lahir_pengguna' => 'required',
+        'username_pengguna' => 'required|is_unique[pengguna.username_pengguna]',
+        'password_pengguna' => 'required',
+        'hak_akses_pengguna' => 'required'
+    ];
+
+
 }

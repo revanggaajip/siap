@@ -34,13 +34,10 @@
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- Vendors styles-->
-    <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
-    <link rel="stylesheet" href="css/vendors/simplebar.css">
+    <link rel="stylesheet" href="<?= base_url('vendors/simplebar/css/simplebar.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/vendors/simplebar.css') ?>">
     <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
-    <link href="css/examples.css" rel="stylesheet">
+    <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
   </head>
   <body>
     <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -64,8 +61,8 @@
       </div>
     </div>
     <!-- CoreUI and necessary plugins-->
-    <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
-    <script src="vendors/simplebar/js/simplebar.min.js"></script>
+    <script src="<?= base_url('vendors/@coreui/coreui/js/coreui.bundle.min.js') ?>"></script>
+    <script src="<?= base_url('vendors/simplebar/js/simplebar.min.js') ?>"></script>
     <script>
     </script>
 
