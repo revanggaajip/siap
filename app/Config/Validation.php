@@ -59,6 +59,12 @@ class Validation
         'password_pengguna' => 'required',
         'hak_akses_pengguna' => 'required'
     ];
-
+    
+    public $editPengguna = [
+        'nama_pengguna' => 'required',
+        'tanggal_lahir_pengguna' => 'required',
+        'username_pengguna' => 'required|is_unique[pengguna.username_pengguna,id_pengguna,{id_pengguna}]',
+        'hak_akses_pengguna' => 'required'
+    ];
 
 }

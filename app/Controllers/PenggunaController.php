@@ -37,11 +37,11 @@ class PenggunaController extends BaseController
             'nama_pengguna' => ucfirst($this->request->getVar('nama_pengguna')),
             'tanggal_lahir_pengguna' => $this->request->getVar('tanggal_lahir_pengguna'),
             'username_pengguna' => $this->request->getVar('username_pengguna'),
-            'password_pengguna' => $passwordPengguna,
+            'password_pengguna' => $encryptPassword,
             'hak_akses_pengguna' => $this->request->getVar('hak_akses_pengguna'),
         ];
         // jika validasi sukses
-        if($validation->run($pengguna, 'createPengguna')) {
+        if($validation->run($pengguna, 'pengguna')) {
             $this->pengguna->save($pengguna);
             session()->setFlashdata('success', 'Data kriteria berhasil disimpan');
             return redirect()->to(base_url('pengguna'));
@@ -50,5 +50,33 @@ class PenggunaController extends BaseController
             session()->setFlashdata('errors', $validation->getErrors());
             return redirect()->to(base_url('pengguna'));             
         }
+    }
+
+    public function edit($id_pengguna)
+    {
+        // validasi input data
+        $validation = $this->services::validation();
+        $pengguna = [
+            'id_pengguna' => $id_pengguna,
+            'nama_pengguna' => ucfirst($this->request->getVar('nama_pengguna')),
+            'tanggal_lahir_pengguna' => $this->request->getVar('tanggal_lahir_pengguna'),
+            'username_pengguna' => $this->request->getVar('username_pengguna'),
+            'hak_akses_pengguna' => $this->request->getVar('hak_akses_pengguna'),
+        ];
+        if ($validation->run($pengguna, 'editPengguna')) {
+            $this->pengguna->save($pengguna, ['id_pengguna' => $id_pengguna]);
+            session()->setFlashdata('success', 'Data pengguna berhasil diubah');
+            return redirect()->to(base_url('pengguna'));
+        } else {
+            session()->setFlashdata('errors', $validation->getErrors());
+           return redirect()->to(base_url('pengguna'));
+        }
+    }
+
+    public function delete($id_pengguna)
+    {
+        $this->pengguna->delete(['id_pengguna' => $id_pengguna]);
+        session()->setFlashdata('success', 'Data Pengguna berhasil dihapus');
+        return redirect()->to(base_url('pengguna'));
     }
 }
