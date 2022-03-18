@@ -49,6 +49,13 @@ $routes->group('pengguna', function($routes) {
     $routes->delete('delete/(:any)', 'PenggunaController::delete/$1');
 });
 
+// Routes Barang
+$routes->group('barang', function($routes) {
+    $routes->get('/', 'BarangController::index');
+    $routes->post('create', 'BarangController::create');
+    $routes->put('edit/(:any)', 'BarangController::edit/$1');
+    $routes->delete('delete/(:any)', 'BarangController::delete/$1');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing

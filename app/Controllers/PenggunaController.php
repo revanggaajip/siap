@@ -43,7 +43,7 @@ class PenggunaController extends BaseController
         // jika validasi sukses
         if($validation->run($pengguna, 'pengguna')) {
             $this->pengguna->save($pengguna);
-            session()->setFlashdata('success', 'Data kriteria berhasil disimpan');
+            session()->setFlashdata('success', 'Data barang berhasil disimpan');
             return redirect()->to(base_url('pengguna'));
         // jika validasi gagal
         } else {

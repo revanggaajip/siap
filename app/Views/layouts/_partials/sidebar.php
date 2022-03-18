@@ -12,13 +12,14 @@
           <i class="fas fa-home nav-icon"></i> Home</a>
         </li>
         <li class="nav-title">Master</li>
-        <li class="nav-item"><a class="nav-link" href="<?= base_url('akun') ?>">
-          <i class="fas fa-dollar-sign nav-icon"></i>Akun</a></li>
         <li class="nav-item">
-          <a class="nav-link" href="colors.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-shirt"></use>
-            </svg> Barang
+          <a class="nav-link" href="<?= base_url('akun') ?>">
+            <i class="fas fa-dollar-sign nav-icon"></i>Akun
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('barang') ?>">
+            <i class="fas fa-box nav-icon"></i>Barang
           </a>
         </li>
         <li class="nav-title">Transaksi</li>

@@ -67,4 +67,16 @@ class Validation
         'hak_akses_pengguna' => 'required'
     ];
 
+    public $createBarang = [
+        'nama_barang' => 'required',
+        'stok_barang' => 'required|integer',
+        'satuan_barang' => 'required',
+    ];
+
+    public $editBarang = [
+        'nama_barang' => 'required',
+        'stok_barang' => 'required|integer',
+        'satuan_barang' => 'required',
+    ];
+
 }

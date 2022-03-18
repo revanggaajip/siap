@@ -10,8 +10,10 @@ class BarangTable extends Migration
     {
         $this->forge->addField([
             'id_barang'   => [
-                'type'          => 'VARCHAR',
-                'constraint'    => 10,
+                'type'          => 'BIGINT',
+                'constraint'    => 20,
+                'unsigned'      => true,
+                'auto_increment'=> true
             ],
             'nama_barang' => [
                 'type'          => 'VARCHAR',
@@ -24,7 +26,7 @@ class BarangTable extends Migration
             ],
             'satuan_barang' => [
                 'type'          => 'ENUM',
-                'constraint'    => ['G', 'KG', 'Drum']
+                'constraint'    => ['Gram', 'KG', 'Drum']
             ],
             'created_at'    => [
                 'type'          => 'DATETIME',
