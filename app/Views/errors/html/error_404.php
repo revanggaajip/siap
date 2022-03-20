@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="<?= base_url('vendors/simplebar/css/simplebar.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/vendors/simplebar.css') ?>">
     <!-- Main styles for this application-->
-    <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('css/style.min.css') ?>" rel="stylesheet">
   </head>
   <body>
     <div class="bg-light min-vh-100 d-flex flex-row align-items-center">

@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="<?= base_url('css/vendors/simplebar.css') ?>">
     <link rel="stylesheet" href="<?= base_url('vendors/fontawesome/css/all.min.css'); ?>">
     <!-- Main styles for this application-->
-    <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('css/style.min.css') ?>" rel="stylesheet">
     <?= $this->renderSection('styles'); ?>
   </head>
   <body>

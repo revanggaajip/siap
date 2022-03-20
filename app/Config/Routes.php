@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'HomeController::index');
 
 // Routes Akun
 $routes->group('akun', function($routes){
@@ -55,6 +55,13 @@ $routes->group('barang', function($routes) {
     $routes->post('create', 'BarangController::create');
     $routes->put('edit/(:any)', 'BarangController::edit/$1');
     $routes->delete('delete/(:any)', 'BarangController::delete/$1');
+});
+// Routes Pelanggan
+$routes->group('pelanggan', function($routes) {
+    $routes->get('/', 'PelangganController::index');
+    $routes->post('create', 'PelangganController::create');
+    $routes->put('edit/(:any)', 'PelangganController::edit/$1');
+    $routes->delete('delete/(:any)', 'PelangganController::delete/$1');
 });
 /*
  * --------------------------------------------------------------------

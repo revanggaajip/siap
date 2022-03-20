@@ -1,14 +1,9 @@
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-      <div class="sidebar-brand d-none d-md-flex">
-        <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-          <use xlink:href="assets/brand/coreui.svg#full"></use>
-        </svg>
-        <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-          <use xlink:href="assets/brand/coreui.svg#signet"></use>
-        </svg>
+      <div class="sidebar-brand d-none d-md-flex logo">
+        <strong>SIAP</strong>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="index.html">
+        <li class="nav-item"><a class="nav-link" href="<?= base_url('/'); ?>">
           <i class="fas fa-home nav-icon"></i> Home</a>
         </li>
         <li class="nav-title">Master</li>
@@ -22,6 +17,11 @@
             <i class="fas fa-box nav-icon"></i>Barang
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('pelanggan') ?>">
+            <i class="fas fa-users nav-icon"></i>Pelanggan
+          </a>
+        </li>   
         <li class="nav-title">Transaksi</li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
@@ -38,7 +38,7 @@
         <li class="nav-title">Support</li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('pengguna'); ?>">
-            <i class="fas fa-users nav-icon"></i>
+            <i class="fas fa-user nav-icon"></i>
             Pengguna
           </a>
         </li>

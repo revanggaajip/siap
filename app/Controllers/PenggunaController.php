@@ -41,9 +41,9 @@ class PenggunaController extends BaseController
             'hak_akses_pengguna' => $this->request->getVar('hak_akses_pengguna'),
         ];
         // jika validasi sukses
-        if($validation->run($pengguna, 'pengguna')) {
+        if($validation->run($pengguna, 'createPengguna')) {
             $this->pengguna->save($pengguna);
-            session()->setFlashdata('success', 'Data barang berhasil disimpan');
+            session()->setFlashdata('success', 'Data pengguna berhasil disimpan');
             return redirect()->to(base_url('pengguna'));
         // jika validasi gagal
         } else {

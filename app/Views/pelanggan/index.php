@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main'); ?>
 
 <?= $this->section('title'); ?>
-Barang
+Pelanggan
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -22,56 +22,54 @@ Barang
                 <thead>
                     <tr>
                         <th width="7%">No</th>
-                        <th>Nama barang</th>
-                        <th width="20%">Stok Barang</th>
+                        <th>Nama</th>
+                        <th>No.Handphone</th>
+                        <th>Alamat</th>
                         <th width="17%">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($listBarang as $key => $barang) :?>
+                    <?php foreach($listPelanggan as $key => $pelanggan) :?>
                     <tr>
                         <td><?= $key+1; ?></td>
-                        <td><?= $barang['nama_barang']; ?></td>
-                        <td><?= $barang['stok_barang']; ?>&nbsp;<?= $barang['satuan_barang']; ?></td>
+                        <td><?= $pelanggan['nama_pelanggan'] ?></td>
+                        <td><?= $pelanggan['no_hp_pelanggan']; ?></td>
+                        <td><?= $pelanggan['alamat_pelanggan']; ?></td>
                         <td>
                             <!-- Tombol Edit -->
-                            <button type="button" class="btn btn-warning btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#editData_<?= $barang['id_barang']; ?>">
+                            <button type="button" class="btn btn-warning btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#editData_<?= $pelanggan['id_pelanggan']; ?>">
                                 <i class="fas fa-edit"></i>&nbsp;Ubah
                             </button>
                             <!-- Akhir Tombol Edit -->
 
                             <!-- Modal Edit -->
-                            <div class="modal fade" id="editData_<?= $barang['id_barang'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="editData_<?= $pelanggan['id_pelanggan'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="editModalLabel">Form Ubah barang <?= $barang['nama_barang']; ?></h5>
+                                            <h5 class="modal-title" id="editModalLabel">Form Ubah pelanggan <?= $pelanggan['nama_pelanggan']; ?></h5>
                                             <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form action="<?= base_url('barang/edit/'.$barang['id_barang']); ?>" method="post">
+                                        <form action="<?= base_url('pelanggan/edit/'.$pelanggan['id_pelanggan']); ?>" method="post">
                                         <?php csrf_field(); ?>
                                         <input type="hidden" name="_method" value="PUT">
                                         <div class="modal-body">
                                             <div class="mb-2">
-                                                <label for="namaBarangEdit" class="form-label">Nama barang</label>
-                                                <input type="text" class="form-control" name="nama_barang" id="namaBarangEdit" value="<?= $barang['nama_barang']; ?>">
+                                                <label for="namaPelangganEdit" class="form-label">Nama pelanggan</label>
+                                                <input type="text" class="form-control" name="nama_pelanggan" id="namaPelangganEdit" value="<?= $pelanggan['nama_pelanggan']; ?>">
                                             </div>
                                             <div class="mb-2">
-                                                <label for="stokBarangEdit" class="form-label">Stok barang</label>
-                                                <input type="number" class="form-control" name="stok_barang" id="stokBarangEdit" value="<?= $barang['stok_barang']; ?>">
+                                                <label for="noHpPelangganEdit" class="form-label">No.Handphone pelanggan</label>
+                                                <input type="text" class="form-control" name="no_hp_pelanggan" id="noHpPelangganEdit" value="<?=$pelanggan['no_hp_pelanggan']; ?>">
                                             </div>
                                             <div class="mb-2">
-                                                <label for="satuanBarangEdit" class="mb-1">Satuan barang</label>
-                                                <select name="satuan_barang" id="satuanBarangEdit" class="form-select">
-                                                    <option value="Gram" <?= $barang['satuan_barang'] == 'Gram' ? 'selected' : null; ?>>Gram</option>
-                                                    <option value="KG" <?= $barang['satuan_barang'] == 'KG' ? 'selected' : null; ?>>KG</option>
-                                                    <option value="Drum" <?= $barang['satuan_barang'] == 'Drum' ? 'selected' : null; ?>>Drum</option>
-                                                </select>
+                                                <label for="alamatPelangganEdit" class="form-label">Alamat pelanggan</label>
+                                                <input type="text" class="form-control" name="alamat_pelanggan" id="alamatPelangganEdit" value="<?= $pelanggan['alamat_pelanggan']; ?>">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-angle-left"></i>&nbsp;Batal</button>
-                                            <button type="submit" class="btn btn-success text-white"><i class="fas fa-trash"></i>&nbsp;Simpan</button>
+                                            <button type="submit" class="btn btn-success text-white"><i class="fas fa-save"></i>&nbsp;Simpan</button>
                                         </div>
                                         </form>
                                     </div>
@@ -80,24 +78,24 @@ Barang
                             <!-- Akhir Modal Edit -->
 
                             <!-- Tombol Hapus -->
-                            <button type="button" class="btn btn-danger btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#hapusData_<?= $barang['id_barang']; ?>">
+                            <button type="button" class="btn btn-danger btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#hapusData_<?= $pelanggan['id_pelanggan']; ?>">
                                 <i class="fas fa-trash"></i>&nbsp;Hapus
                             </button>
                             <!-- Akhir Tombol Hapus -->
                             
                             <!-- Modal hapus -->
-                            <div class="modal fade" id="hapusData_<?= $barang['id_barang'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="hapusData_<?= $pelanggan['id_pelanggan'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus <?= $barang['nama_barang']; ?></h5>
+                                            <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus <?= $pelanggan['nama_pelanggan']; ?></h5>
                                             <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Apakah anda yakin akan menghapus data <?= $barang['nama_barang']; ?>
+                                            Apakah anda yakin akan menghapus data <?= $pelanggan['nama_pelanggan']; ?>
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="<?= base_url('barang/delete/'.$barang['id_barang']); ?>" method="post">
+                                            <form action="<?= base_url('pelanggan/delete/'.$pelanggan['id_pelanggan']); ?>" method="post">
                                                 <?php csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-angle-left"></i>&nbsp;Batal</button>
@@ -118,7 +116,7 @@ Barang
 </div>
 
 <!-- Modal Tambah-->
-<?= $this->include('barang/create'); ?>
+<?= $this->include('pelanggan/create'); ?>
 <!-- Modal Tambah -->
 
 <?= $this->endSection(); ?>
@@ -133,6 +131,10 @@ Barang
 <script>
     $(document).ready(()=> {
         $("#dataTable").DataTable();
+
+        $('#simpanTambah').click(() => {
+            
+        });
     });
 </script>
 <?php $this->endSection(); ?>
