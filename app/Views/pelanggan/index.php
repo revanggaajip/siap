@@ -68,7 +68,7 @@ Pelanggan
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-angle-left"></i>&nbsp;Batal</button>
+                                            <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Batal</button>
                                             <button type="submit" class="btn btn-success text-white"><i class="fas fa-save"></i>&nbsp;Simpan</button>
                                         </div>
                                         </form>
@@ -98,7 +98,7 @@ Pelanggan
                                             <form action="<?= base_url('pelanggan/delete/'.$pelanggan['id_pelanggan']); ?>" method="post">
                                                 <?php csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-angle-left"></i>&nbsp;Batal</button>
+                                                <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Batal</button>
                                                 <button type="submit" class="btn btn-success text-white"><i class="fas fa-trash"></i>&nbsp;Hapus</button>
                                             </form>
                                         </div>

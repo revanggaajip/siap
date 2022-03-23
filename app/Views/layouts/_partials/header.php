@@ -34,7 +34,12 @@
             </div><a class="dropdown-item" href="#">
                 <svg class="icon me-2">
                 <use xlink:href="<?= base_url('vendors/@coreui/icons/svg/free.svg#cil-bell')?>"></use>
-                </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item" href="#">
+                </svg> Ubah Password<span class="badge badge-sm bg-info ms-2">42</span></a>
+                <a class="dropdown-item" href="#">
+                <svg class="icon me-2">
+                <use xlink:href="<?= base_url('vendors/@coreui/icons/svg/free.svg#cil-account-logout')?>"></use>
+                </svg> Logout</a>
+                <a class="dropdown-item" href="#">
                 <svg class="icon me-2">
                 <use xlink:href="<?= base_url('vendors/@coreui/icons/svg/free.svg#cil-envelope-open')?>"></use>
                 </svg> Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item" href="#">

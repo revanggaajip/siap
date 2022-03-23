@@ -25,8 +25,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal">Batal</button>
-        <button type="submit" id="simpanTambah" class="btn btn-success text-white">Simpan</button>
+        <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Batal</button>
+        <button type="submit" id="simpanTambah" class="btn btn-success text-white"><i class="fas fa-save"></i>&nbsp;Simpan</button>
       </div>
       </form>
     </div>
