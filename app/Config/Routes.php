@@ -63,6 +63,11 @@ $routes->group('pelanggan', function($routes) {
     $routes->put('edit/(:any)', 'PelangganController::edit/$1');
     $routes->delete('delete/(:any)', 'PelangganController::delete/$1');
 });
+
+$routes->group('transaksi-tunai', function($routes) {
+    $routes->get('/', 'TransaksiTunaiController::index');
+    $routes->post('create', 'TransaksiTunaiController::create');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing

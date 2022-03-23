@@ -12,7 +12,7 @@ class BarangController extends BaseController
     {
         $this->title = 'Barang';
         $this->services = new Services;
-        $this->barang = new Barang();
+        $this->barang = new Barang;
     }
 
     public function index()

@@ -23,24 +23,33 @@
           </a>
         </li>   
         <li class="nav-title">Transaksi</li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-            </svg> Tunai</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="notifications/badge.html"><span class="nav-icon"></span> Tambah Transaksi</a></li>
-            <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span class="nav-icon"></span> Daftar Transaksi</a></li>
-          </ul>
-        </li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-            </svg> Kredit</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="notifications/badge.html"><span class="nav-icon"></span> Tambah Transaksi</a></li>
-            <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span class="nav-icon"></span> Daftar Transaksi</a></li>
-          </ul>
-        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('transaksi-tunai') ?>">
+            <i class="fas fa-hand-holding-usd nav-icon"></i>Transaksi Tunai
+          </a>
+        </li>   
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('transaksi-kredit') ?>">
+            <i class="fas fa-credit-card nav-icon"></i>Transaksi Kredit
+          </a>
+        </li>   
+        <li class="nav-divider"></li>
+        <li class="nav-title">Laporan</li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('transaksi-kredit') ?>">
+            <i class="fas fa-file-invoice-dollar nav-icon"></i>Jurnal Umum
+          </a>
+        </li>   
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('transaksi-kredit') ?>">
+            <i class="fas fa-book nav-icon"></i>Buku Besar
+          </a>
+        </li>   
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('transaksi-kredit') ?>">
+            <i class="fas fa-balance-scale nav-icon"></i>Neraca
+          </a>
+        </li>   
         <li class="nav-divider"></li>
         <li class="nav-title">Support</li>
         <li class="nav-item">
