@@ -11,5 +11,5 @@ class Barang extends Model
     protected $useAutoIncrement = true;
     protected $protectFields    = true;
     protected $useTimestamps    = true;
-    protected $allowedFields    = ['id_barang', 'nama_barang', 'stok_barang', 'satuan_barang'];
+    protected $allowedFields    = ['id_barang', 'nama_barang', 'stok_barang', 'satuan_barang', 'harga_barang'];
 }

@@ -71,12 +71,14 @@ class Validation
         'nama_barang' => 'required',
         'stok_barang' => 'required|integer',
         'satuan_barang' => 'required',
+        'harga_barang' => 'required|integer'
     ];
 
     public $editBarang = [
         'nama_barang' => 'required',
         'stok_barang' => 'required|integer',
         'satuan_barang' => 'required',
+        'harga_barang' => 'required|integer'
     ];
 
     public $createPelanggan = [

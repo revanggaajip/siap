@@ -63,10 +63,13 @@ $routes->group('pelanggan', function($routes) {
     $routes->put('edit/(:any)', 'PelangganController::edit/$1');
     $routes->delete('delete/(:any)', 'PelangganController::delete/$1');
 });
-
+// Routes Transaksi Tunai
 $routes->group('transaksi-tunai', function($routes) {
     $routes->get('/', 'TransaksiTunaiController::index');
     $routes->post('create', 'TransaksiTunaiController::create');
+    $routes->post('tambah-keranjang', 'TransaksiTunaiController::tambahKeranjang');
+    $routes->get('lihat-keranjang', 'TransaksiTunaiController::lihatKeranjang');
+    $routes->get('hapus-keranjang/(:any)', 'TransaksiTunaiController::hapusKeranjang/$1');
 });
 /*
  * --------------------------------------------------------------------

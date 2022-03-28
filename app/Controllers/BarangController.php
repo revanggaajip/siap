@@ -32,6 +32,7 @@ class BarangController extends BaseController
             'nama_barang' => ucfirst($this->request->getVar('nama_barang')),
             'stok_barang' => $this->request->getVar('stok_barang'),
             'satuan_barang' => $this->request->getVar('satuan_barang'),
+            'harga_barang' => $this->request->getVar('harga_barang')
         ];
         // jika validasi sukses
         if($validation->run($barang, 'createBarang')) {
@@ -55,6 +56,7 @@ class BarangController extends BaseController
             'nama_barang' => ucfirst($this->request->getVar('nama_barang')),
             'stok_barang' => $this->request->getVar('stok_barang'),
             'satuan_barang' => $this->request->getVar('satuan_barang'),
+            'harga_barang' => $this->request->getVar('harga_barang')
         ];
         // validasi data
         if ($validation->run($barang, 'editBarang')) {

@@ -19,7 +19,7 @@ Akun
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered dt-responsive nowrap" id="dataTable">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th width="7%">No</th>
                         <th width="12%">Id Akun</th>
