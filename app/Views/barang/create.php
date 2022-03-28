@@ -24,6 +24,10 @@
                 <option value="Drum">Drum</option>
             </select>
         </div>
+        <div class="mb-2">
+          <label for="hargaBarang" class="form-label">Harga Barang</label>
+          <input type="number" class="form-control" name="harga_barang" id="hargaBarang">
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Batal</button>

@@ -28,6 +28,10 @@ class BarangTable extends Migration
                 'type'          => 'ENUM',
                 'constraint'    => ['Gram', 'KG', 'Drum']
             ],
+            'harga_barang' => [
+                'type'          => 'BIGINT',
+                'constraint'    => 20
+            ],
             'created_at'    => [
                 'type'          => 'DATETIME',
                 'null'          => TRUE

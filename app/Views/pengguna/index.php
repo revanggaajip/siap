@@ -19,7 +19,7 @@ Pengguna
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered dt-responsive nowrap" id="dataTable">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th width="7%">No</th>
                         <th>Nama</th>
@@ -107,7 +107,7 @@ Pengguna
                                                 <?php csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Batal</button>
-                                                <button type="submit" class="btn btn-success text-white"><i class="fas fa-save"></i>&nbsp;Hapus</button>
+                                                <button type="submit" class="btn btn-success text-white"><i class="fas fa-trash"></i>&nbsp;Hapus</button>
                                             </form>
                                         </div>
                                     </div>

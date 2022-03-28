@@ -19,11 +19,12 @@ Barang
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered dt-responsive nowrap" id="dataTable">
-                <thead>
+                <thead class="table-dark">
                     <tr>
-                        <th width="7%">No</th>
-                        <th>Nama barang</th>
-                        <th width="20%">Stok Barang</th>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Stok</th>
+                        <th>Harga</th>
                         <th width="17%">Aksi</th>
                     </tr>
                 </thead>
@@ -33,6 +34,7 @@ Barang
                         <td><?= $key+1; ?></td>
                         <td><?= $barang['nama_barang']; ?></td>
                         <td><?= $barang['stok_barang']; ?>&nbsp;<?= $barang['satuan_barang']; ?></td>
+                        <td><?= rupiah($barang['harga_barang']); ?></td>
                         <td>
                             <!-- Tombol Edit -->
                             <button type="button" class="btn btn-warning btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#editData_<?= $barang['id_barang']; ?>">
