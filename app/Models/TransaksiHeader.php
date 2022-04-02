@@ -6,37 +6,28 @@ use CodeIgniter\Model;
 
 class TransaksiHeader extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'transaksiheaders';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $insertID         = 0;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $table            = 'transaksi_header';
+    protected $primaryKey       = 'id_transaksi_header';
+    protected $useTimestamps    = true;
+    protected $dateFormat       = 'datetime';
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'id_transaksi_header',
+        'id_pelanggan', 
+        'jenis_transaksi', 
+        'tanggal_transaksi', 
+        'tanggal_jatuh_tempo_transaksi', 
+        'total_transaksi', 
+        'piutang_transaksi',
+        'status_transaksi',
+        'keterangan_transaksi'
+    ];
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
-
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function listPiutang() {
+        $data = $this->db->query('SELECT * FROM transaksi_header 
+        JOIN pelanggan ON pelanggan.id_pelanggan = transaksi_header.id_pelanggan
+        WHERE transaksi_header.jenis_transaksi = "Kredit"
+        AND transaksi_header.status_transaksi = "Belum Lunas"')->getResultArray();
+        return $data;
+    }
 }

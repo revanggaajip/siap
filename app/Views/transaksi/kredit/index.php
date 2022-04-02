@@ -11,17 +11,17 @@
             <h5><?= $title; ?></h5>
         </div>
         <div class="card-body">
-            <form action="<?= base_url('transaksi-tunai/create') ?>" method="post">
+            <form action="<?= base_url('transaksi-kredit/create') ?>" method="post">
                 <?= csrf_field(); ?>
                 <div class="container">
-                    <div class="row mb-2">
-                        <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
                             <div class="form-group">
                                 <label for="idTransaksiHeader" class="form-label">ID Transaksi</label>
                                 <input type="text" class="form-control" name="id_transaksi_header" id="idTransaksiHeader" value="<?= $id; ?>" readonly>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-2">
                             <div class="form-group">
                                 <label for="tglTransaksiHeader" class="form-label">Tanggal Transaksi</label>
                                 <input type="date" class="form-control" name="tanggal_transaksi" id="tglTransaksiHeader" value="<?= date('Y-m-d'); ?>">
@@ -29,6 +29,25 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="namaPelangganHeader" class="form-label">Nama Pelanggan</label>
+                                <select name="id_pelanggan" id="namaPelangganHeader" class="form-select">
+                                    <option disabled selected>Pilih Pelanggan</option>
+                                    <?php foreach($listPelanggan as $pelanggan) :?>
+                                    <option value="<?= $pelanggan['id_pelanggan']; ?>"><?= $pelanggan['nama_pelanggan']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="jatuhTempoTransaksiHeader" class="form-label">Tanggal Jatuh Tempo</label>
+                                <input type="date" class="form-control" name="tanggal_jatuh_tempo_transaksi" id="jatuhTempoTransaksiHeader" value="<?= date('Y-m-d', strtotime('+1 month')); ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
                         <div class="col">
                             <div class="form-group">
                                 <label for="keteranganTransaksi" class="mb-1">Keterangan</label>
@@ -41,7 +60,7 @@
                         <i class="fas fa-cart-plus"></i>&nbsp;Tambah Keranjang
                     </button>
                     <?= $this->include('transaksi/tunai/create'); ?>
-                    <table class="table table-striped table-bordered mb-4" id="dataTable">
+                    <table class="table table-striped table-bordered mb-2" id="dataTable">
                         <thead class="table-dark">
                             <tr class="text-center">
                                 <th width="5%">No</th>
@@ -55,9 +74,23 @@
                         <tbody></tbody>
                         <tfoot></tfoot>
                     </table>
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="dpTransaksiHeader" class="form-label">Uang muka</label>
+                                <input type="number" id="dpTransaksiHeader" name="dp_transaksi" class="form-control" onchange="piutangTransaksi()" onkeyup="piutangTransaksi()">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="piutangTransaksiHeader" class="form-label">Total Piutang</label>
+                                <input type="text" id="piutangTransaksiHeader" name="piutang_transaksi" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <a href="<?= base_url('/'); ?>" class="btn btn-danger text-white"><i class="fas fa-arrow-left"></i> Kembali</a>
-                        <button type="submit" class="btn btn-success text-white"><i class="fas fa-save"></i> Simpan</button>
+                        <button type="submit" class="btn btn-success text-white " id="btn-simpan" disabled><i class="fas fa-save"></i> Simpan</button>
                     </div>
                 </div>
             </form>
@@ -93,7 +126,7 @@
             let id_barang = $('#namaBarang').val();
             let quantity_barang = $('#quantityBarang').val();
             $.ajax({
-                url: "<?= base_url('transaksi-tunai/tambah-keranjang') ?>",
+                url: "<?= base_url('transaksi-kredit/tambah-keranjang') ?>",
                 method: "POST",
                 data: {
                     _token: "<?= csrf_token(); ?>",
@@ -117,7 +150,7 @@
         $('tfoot').html('');
         let nomor = 1;
         $.ajax({
-            url: "<?= base_url('transaksi-tunai/lihat-keranjang') ?>",
+            url: "<?= base_url('transaksi-kredit/lihat-keranjang') ?>",
             method: "GET",
             dataType: "JSON",
             success: (response) => {
@@ -154,7 +187,7 @@
             if(confirm('Apakah anda yakin untuk menghapus data keranjang?')) {
                 let id  = $(result.target).val()
                 $.ajax({
-                    url: "<?= base_url('transaksi-tunai/hapus-keranjang') ?>/"+id,
+                    url: "<?= base_url('transaksi-kredit/hapus-keranjang') ?>/"+id,
                     method: "GET",
                     success: (response) => {
                         console.log(response);
@@ -170,7 +203,7 @@
         let quantity = $("#quantityBarang").val()
         if(barang !='' && quantity !='') {
             $.ajax({
-                url: "<?= base_url('transaksi-tunai/cek-subtotal') ?>",
+                url: "<?= base_url('transaksi-kredit/cek-subtotal') ?>",
                 type: "POST",
                 dataType: "JSON",
                 data: {
@@ -194,6 +227,33 @@
                 }
             })
         }
+    }
+
+    function piutangTransaksi() {
+         $.ajax({
+            url: "<?= base_url('transaksi-kredit/lihat-keranjang') ?>",
+            method: "GET",
+            dataType: "JSON",
+            success: (response) => {
+                let transaksi = 0
+                $.each(response, (key, data) => {
+                    transaksi += data.subtotal;
+                })
+                let dp = $('#dpTransaksiHeader').val()
+                let piutang = transaksi - dp
+                if(piutang > 0) {
+                    $('#piutangTransaksiHeader').val(`Rp. ${piutang}`)
+                    $('#piutangTransaksiHeader').removeClass('is-invalid')
+                    $('#btn-simpan').prop('disabled', false);
+                } else {
+                    $('#piutangTransaksiHeader').val('Jumlah uang muka terlalu banyak')
+                    $('#piutangTransaksiHeader').addClass('is-invalid')
+                    $('#btn-simpan').prop('disabled', true);
+
+                }
+
+            }
+         });
     }
 
 </script>

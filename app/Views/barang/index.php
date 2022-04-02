@@ -21,7 +21,7 @@ Barang
             <table class="table table-striped table-bordered dt-responsive nowrap" id="dataTable">
                 <thead class="table-dark">
                     <tr>
-                        <th>No</th>
+                        <th width="15">No</th>
                         <th>Nama</th>
                         <th>Stok</th>
                         <th>Harga</th>
@@ -69,6 +69,10 @@ Barang
                                                     <option value="KG" <?= $barang['satuan_barang'] == 'KG' ? 'selected' : null; ?>>KG</option>
                                                     <option value="Drum" <?= $barang['satuan_barang'] == 'Drum' ? 'selected' : null; ?>>Drum</option>
                                                 </select>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="hargaBarang" class="form-label">Harga Barang</label>
+                                                <input type="number" class="form-control" name="harga_barang" id="hargaBarang" value="<?= $barang['harga_barang'] ?>">
                                             </div>
                                         </div>
                                         <div class="modal-footer">

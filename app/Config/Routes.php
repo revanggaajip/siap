@@ -70,6 +70,20 @@ $routes->group('transaksi-tunai', function($routes) {
     $routes->post('tambah-keranjang', 'TransaksiTunaiController::tambahKeranjang');
     $routes->get('lihat-keranjang', 'TransaksiTunaiController::lihatKeranjang');
     $routes->get('hapus-keranjang/(:any)', 'TransaksiTunaiController::hapusKeranjang/$1');
+    $routes->post('cek-subtotal', 'TransaksiTunaiController::cekSubtotal');
+});
+// Routes Transaksi Kredit
+$routes->group('transaksi-kredit', function($routes) {
+    $routes->get('/', 'TransaksiKreditController::index');
+    $routes->post('create', 'TransaksiKreditController::create');
+    $routes->post('tambah-keranjang', 'TransaksiKreditController::tambahKeranjang');
+    $routes->get('lihat-keranjang', 'TransaksiKreditController::lihatKeranjang');
+    $routes->get('hapus-keranjang/(:any)', 'TransaksiKreditController::hapusKeranjang/$1');
+    $routes->post('cek-subtotal', 'TransaksiKreditController::cekSubtotal');
+});
+// Routes aAngsuran
+$routes->group('angsuran', function($routes) {
+    $routes->get('/', 'AngsuranController::index');
 });
 /*
  * --------------------------------------------------------------------

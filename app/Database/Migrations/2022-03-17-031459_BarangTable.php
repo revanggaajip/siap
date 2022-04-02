@@ -29,8 +29,7 @@ class BarangTable extends Migration
                 'constraint'    => ['Gram', 'KG', 'Drum']
             ],
             'harga_barang' => [
-                'type'          => 'BIGINT',
-                'constraint'    => 20
+                'type'          => 'double',
             ],
             'created_at'    => [
                 'type'          => 'DATETIME',
