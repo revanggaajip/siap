@@ -22,7 +22,7 @@
                     <i class="fas fa-key icon me-2"></i> Ubah Password
                 </a>
                 <a class="dropdown-item" href="#">
-                    <i class="fas fa-arrow-left icon me-2"></i> Logout
+                    <i class="fas fa-arrow-circle-left icon me-2"></i> Logout
                 </a>
             </div>
         </li>

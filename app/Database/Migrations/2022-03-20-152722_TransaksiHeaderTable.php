@@ -9,7 +9,7 @@ class TransaksiHeaderTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id_transaksi_header' => ['type' => 'varchar', 'constraint' => 20 ],
+            'id_transaksi_header' => ['type' => 'char', 'constraint' => 20 ],
             'id_pelanggan' =>  ['type' => 'bigint', 'constraint' => 20, 'null' => true],
             'jenis_transaksi' => ['type' => 'enum', 'constraint' => ['Tunai', 'Kredit']],
             'tanggal_transaksi' => ['type' => 'date'],

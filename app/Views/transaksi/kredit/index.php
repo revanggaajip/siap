@@ -24,7 +24,7 @@
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
                                 <label for="tglTransaksiHeader" class="form-label">Tanggal Transaksi</label>
-                                <input type="date" class="form-control" name="tanggal_transaksi" id="tglTransaksiHeader" value="<?= date('Y-m-d'); ?>">
+                                <input type="date" class="form-control" name="tanggal_transaksi" id="tglTransaksiHeader" value="<?= date('Y-m-d'); ?>" require>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
                                 <label for="namaPelangganHeader" class="form-label">Nama Pelanggan</label>
-                                <select name="id_pelanggan" id="namaPelangganHeader" class="form-select">
+                                <select name="id_pelanggan" id="namaPelangganHeader" class="form-select" require>
                                     <option disabled selected>Pilih Pelanggan</option>
                                     <?php foreach($listPelanggan as $pelanggan) :?>
                                     <option value="<?= $pelanggan['id_pelanggan']; ?>"><?= $pelanggan['nama_pelanggan']; ?></option>
@@ -43,7 +43,7 @@
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
                                 <label for="jatuhTempoTransaksiHeader" class="form-label">Tanggal Jatuh Tempo</label>
-                                <input type="date" class="form-control" name="tanggal_jatuh_tempo_transaksi" id="jatuhTempoTransaksiHeader" value="<?= date('Y-m-d', strtotime('+1 month')); ?>">
+                                <input type="date" class="form-control" name="tanggal_jatuh_tempo_transaksi" id="jatuhTempoTransaksiHeader" value="<?= date('Y-m-d', strtotime('+1 month')); ?>" require>
                             </div>
                         </div>
                     </div>

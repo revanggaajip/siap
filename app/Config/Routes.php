@@ -84,7 +84,18 @@ $routes->group('transaksi-kredit', function($routes) {
 // Routes aAngsuran
 $routes->group('angsuran', function($routes) {
     $routes->get('/', 'AngsuranController::index');
+    $routes->get('detail/(:any)', 'AngsuranController::detail/$1');
+    $routes->post('create/(:any)', 'AngsuranController::create/$1');
+
 });
+
+$routes->group('laporan-penjualan', function($routes) {
+    $routes->get('/', 'LaporanPenjualanController::index');
+    $routes->post('/', 'LaporanPenjualanController::detail');
+    $routes->post('cetak', 'LaporanPenjualanController::cetak');
+});
+
+$routes->get('login', "AuthController::index");
 /*
  * --------------------------------------------------------------------
  * Additional Routing

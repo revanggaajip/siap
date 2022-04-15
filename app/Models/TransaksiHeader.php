@@ -30,4 +30,23 @@ class TransaksiHeader extends Model
         AND transaksi_header.status_transaksi = "Belum Lunas"')->getResultArray();
         return $data;
     }
+
+    public function detailPiutang($id) {
+        $data = $this->where('id_transaksi_header', $id)
+        ->join('pelanggan', 'pelanggan.id_pelanggan = transaksi_header.id_pelanggan')
+        ->first();
+        return $data;
+    }
+
+    public function laporanPenjualan($awal, $akhir) {
+        $data = $this->select('*')
+        ->join('transaksi_detail', 'transaksi_detail.id_transaksi_header = transaksi_header.id_transaksi_header')
+        ->join('barang', 'barang.id_barang = transaksi_detail.id_barang')
+        ->where('transaksi_header.jenis_transaksi', 'tunai')
+        ->where("transaksi_header.tanggal_transaksi BETWEEN '$awal' AND '$akhir'")
+        ->get()->getResultArray();
+        return $data;
+
+    }
+
 }

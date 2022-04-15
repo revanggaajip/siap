@@ -10,7 +10,7 @@ class TransaksiDetailTable extends Migration
     {
         $this->forge->addField([
             'id_transaksi_detail' => ['type' => 'bigint', 'constraint' => 20, 'unsigned' => true, 'auto_increment' => true],
-            'id_transaksi_header' => ['type' => 'varchar', 'constraint' => 20],
+            'id_transaksi_header' => ['type' => 'char', 'constraint' => 20],
             'id_barang' => ['type' => 'bigint', 'constraint' => 20],
             'quantity_barang' => ['type' => 'bigint', 'constraint' => 20],
             'subtotal_transaksi' => ['type' => 'long'],

@@ -8,7 +8,8 @@
         "php": "^7.3 || ^8.0",
         "codeigniter4/framework": "^4",
         "hermawan/codeigniter4-datatables": "^0.5.4",
-        "jason-napolitano/codeigniter4-cart-module": "^1.1"
+        "jason-napolitano/codeigniter4-cart-module": "^1.1",
+        "dompdf/dompdf": "^1.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
