@@ -11,19 +11,20 @@
             <h5><?= $title; ?></h5>
         </div>
         <div class="card-body">
-            <form action="" method="post">
+            <form action="<?= base_url('transaksi-tunai/create') ?>" method="post">
+                <?= csrf_field(); ?>
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="idTransaksiHeader" class="form-label">ID Transaksi</label>
-                                <input type="text" class="form-control" name="id_transaksi_header" id="idTransaksiHeader" value="<?= $id; ?>">
+                                <input type="text" class="form-control" name="id_transaksi_header" id="idTransaksiHeader" value="<?= $id; ?>" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="tglTransaksiHeader" class="form-label">Tanggal Transaksi</label>
-                                <input type="date" class="form-control" name="tanggal_transaksi_header" id="tglTransaksiHeader" value="<?= date('Y-m-d'); ?>">
+                                <input type="date" class="form-control" name="tanggal_transaksi" id="tglTransaksiHeader" value="<?= date('Y-m-d'); ?>">
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                         <i class="fas fa-cart-plus"></i>&nbsp;Tambah Keranjang
                     </button>
                     <?= $this->include('transaksi/tunai/create'); ?>
-                    <table class="table table-striped table-bordered" id="dataTable">
+                    <table class="table table-striped table-bordered mb-4" id="dataTable">
                         <thead class="table-dark">
                             <tr class="text-center">
                                 <th width="5%">No</th>
@@ -51,9 +52,13 @@
                                 <th width="12%">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        <tbody></tbody>
+                        <tfoot></tfoot>
                     </table>
+                    <div class="d-flex justify-content-between">
+                        <a href="<?= base_url('/'); ?>" class="btn btn-danger text-white"><i class="fas fa-arrow-left"></i> Kembali</a>
+                        <button type="submit" class="btn btn-success text-white"><i class="fas fa-save"></i> Simpan</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -61,40 +66,37 @@
 </div>
 <?= $this->endSection(); ?>
 <!-- ---------------------------------------------------------------------------------- -->
-<?= $this->section('styles'); ?>
-<link rel="stylesheet" href="<?= base_url('vendors/dataTables/css/dataTables.bootstrap4.min.css'); ?>">
-<?= $this->endSection(); ?>
-
 <?= $this->section('scripts'); ?>
-<script src="<?= base_url('vendors/dataTables/js/jquery.dataTables.min.js'); ?>"></script>
-<script src="<?= base_url('vendors/dataTables/js/dataTables.bootstrap4.min.js'); ?>"></script>
 <script>
     $(document).ready(()=> {
         lihatKeranjang();
         tambahKeranjang();
         hapusKeranjang();
+        // cekTotalBayar();
     });
 
     function rupiah(angka){
-        var reverse = angka.toString().split('').reverse().join(''),
+        let reverse = angka.toString().split('').reverse().join(''),
         ribuan = reverse.match(/\d{1,3}/g);
         ribuan = ribuan.join('.').split('').reverse().join('');
         return ribuan;
+    }
+
+    function reverseRupiah(angka) {
+        let deleteRp = angka.replace('Rp. ', '')
+        let result = deleteRp.replaceAll('.', '')
+        return result
     }
 
     function tambahKeranjang() {
         $('#btnTambahKeranjang').click(() => {
             let id_barang = $('#namaBarang').val();
             let quantity_barang = $('#quantityBarang').val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             $.ajax({
                 url: "<?= base_url('transaksi-tunai/tambah-keranjang') ?>",
                 method: "POST",
                 data: {
+                    _token: "<?= csrf_token(); ?>",
                     id_barang:id_barang,
                     quantity_barang:quantity_barang
                 },
@@ -112,12 +114,14 @@
 
     function lihatKeranjang() {
         $('tbody').html('');
+        $('tfoot').html('');
         let nomor = 1;
         $.ajax({
             url: "<?= base_url('transaksi-tunai/lihat-keranjang') ?>",
             method: "GET",
             dataType: "JSON",
             success: (response) => {
+                let total = 0;
                 $.each(response, (key, data) => {
                     let keranjang = `
                     <tr>
@@ -133,23 +137,63 @@
                         </td>
                     </tr>`
                     $('tbody').append(keranjang);
+                    total += data.subtotal;
                 });
+                let totalKeranjang = `
+                <tr>
+                    <td colspan="4" class="text-center">Total Transaksi</td>
+                    <td colspan="2">Rp. ${rupiah(total)}</td>
+                </tr>`
+                $('tfoot').append(totalKeranjang)
             }
         });
     }
+
     function hapusKeranjang() {
         $(document).on('click', '.btn-hapus', (result) => {
-            let id  = $(result.target).val()
-            console.log(id)
-            $.ajax({
-                url: "<?= base_url('transaksi-tunai/hapus-keranjang') ?>/"+id,
-                method: "GET",
-                success: (response) => {
-                    console.log(response);
-                }
-            })
+            if(confirm('Apakah anda yakin untuk menghapus data keranjang?')) {
+                let id  = $(result.target).val()
+                $.ajax({
+                    url: "<?= base_url('transaksi-tunai/hapus-keranjang') ?>/"+id,
+                    method: "GET",
+                    success: (response) => {
+                        console.log(response);
+                    }
+                })
+            }
             lihatKeranjang()
         })
+    }
+
+    function cekSubtotal() {
+        let barang = $("#namaBarang").val()
+        let quantity = $("#quantityBarang").val()
+        if(barang !='' && quantity !='') {
+            $.ajax({
+                url: "<?= base_url('transaksi-tunai/cek-subtotal') ?>",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    _token: "<?= csrf_token() ?>",
+                    id: barang,
+                    qty: quantity
+                },
+                success: (response) => {
+                    $("#subtotalBarang").val(`Rp. ${rupiah(response.data)}`)
+                    let cekStok = response.barang.stok_barang - quantity;
+                    if(cekStok < 0) {
+                        $('#quantityBarang').addClass('is-invalid');
+                        $('#quantityValidasi').html(`Maaf, ${response.barang.nama_barang} hanya tersisa ${response.barang.stok_barang} ${response.barang.satuan_barang}`);
+                        $('#btnTambahKeranjang').attr('disabled');
+                        $('#btnTambahKeranjang').prop('disabled', true);
+                    } else {
+                        $('#quantityBarang').removeClass('is-invalid');
+                        $('#quantityValidasi').html('');
+                        $('#btnTambahKeranjang').prop('disabled', false);
+                    }
+                }
+            })
+        }
     }
 
 </script>

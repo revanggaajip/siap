@@ -89,7 +89,7 @@ class Validation
 
     public $editPelanggan = [
         'nama_pelanggan' => 'required',
-        'no_hp_pelanggan' => 'required|is_unique[pelanggan.no_hp_pelanggan,id_pelanggan,{id_pelanggan}',
+        'no_hp_pelanggan' => 'required|is_unique[pelanggan.no_hp_pelanggan,id_pelanggan,{id_pelanggan}]',
         'alamat_pelanggan' => 'required',
     ];
 
