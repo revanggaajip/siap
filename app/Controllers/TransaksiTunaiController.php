@@ -111,6 +111,11 @@ class TransaksiTunaiController extends BaseController
             $total += $item['subtotal'];
         }
         $cart->destroy();
+
+        if ($total == 0) {
+            session()->setFlashdata('danger', 'Tidak ada data transaksi');
+            return redirect()->to(base_url('transaksi-tunai'));
+        }
         
         // simpan data transaksi header
         $this->header->insert([

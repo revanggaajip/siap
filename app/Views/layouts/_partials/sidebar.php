@@ -6,6 +6,7 @@
         <li class="nav-item"><a class="nav-link" href="<?= base_url('/'); ?>">
           <i class="fas fa-home nav-icon"></i> Home</a>
         </li>
+        <?php if(session('hak_akses_pengguna') == 'Admin') :?>
         <li class="nav-title">Master</li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('akun') ?>">
@@ -37,8 +38,9 @@
           <a class="nav-link" href="<?= base_url('angsuran') ?>">
             <i class="fas fa-hand-holding-usd nav-icon"></i>Angsuran
           </a>
-        </li>   
+        </li>
         <li class="nav-divider"></li>
+        <?php endif; ?>
         <li class="nav-title">Laporan</li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('laporan-penjualan') ?>">
@@ -64,7 +66,8 @@
           <a class="nav-link" href="<?= base_url('neraca') ?>">
             <i class="fas fa-balance-scale nav-icon"></i>Neraca
           </a>
-        </li>   
+        </li>
+        <?php if(session('hak_akses_pengguna') == 'Pemilik') : ?>   
         <li class="nav-divider"></li>
         <li class="nav-title">Support</li>
         <li class="nav-item">
@@ -73,6 +76,7 @@
             Pengguna
           </a>
         </li>
+        <?php endif; ?>
       </ul>
             <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
     </div>

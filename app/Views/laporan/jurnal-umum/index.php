@@ -12,12 +12,7 @@
                 <h5>
                     <?= $title; ?>
                 </h5>
-                <form action="<?= base_url('laporan-penjualan/cetak') ?>" method="post" target="_blank">
-                    <?= csrf_field(); ?>
-                    <input type="hidden" name="periode_awal" value="<?= $periode_awal; ?>">
-                    <input type="hidden" name="periode_akhir" value="<?= $periode_akhir; ?>">
-                    <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Cetak</button>
-                </form>
+                <a href="<?= base_url('jurnal-umum/cetak'); ?>" class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Cetak</a>
             </div>
         </div>
         <div class="card-body">
@@ -25,23 +20,27 @@
                 <table class="table table-striped table-bordered dt-responsive nowrap" id="dataTable">
                     <thead class="table-dark">
                         <tr>
-                            <th width="5%">No</th>
+                            <th width="7%">No</th>
+                            <th>Id Transaksi</th>
                             <th>Tanggal</th>
-                            <th>Nama Barang</th>
-                            <th>Harga</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
+                            <th>Nominal Pembayaran</th>
+                            <th width="17%">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($listLaporan as $key => $laporan) :?>
                         <tr>
                             <td><?= $key+1; ?></td>
+                            <td><?= $laporan['id_transaksi_header'] ?></td>
                             <td><?= date('d-m-Y', strtotime($laporan['tanggal_transaksi'])); ?></td>
-                            <td><?= $laporan['nama_barang']; ?></td>
-                            <td><?= rupiah($laporan['harga_barang']); ?></td>
-                            <td><?= $laporan['quantity_barang']; ?> <?= $laporan['satuan_barang']; ?></td>
-                            <td><?= rupiah($laporan['harga_barang'] * $laporan['quantity_barang']); ?></td>
+                            <td><?= rupiah($laporan['total_transaksi'] - $laporan['piutang_transaksi']); ?></td>
+                            <td class="text-center">
+                                <form action="<?= base_url('jurnal-umum/posting'); ?>" method="post">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="id_jurnal_header" value="<?= $laporan['id_jurnal_header']; ?>">
+                                    <button class="btn btn-info text-white btn-sm"><i class="fas fa-paper-plane"></i> Posting</button>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>                    
                     </tbody>
@@ -50,6 +49,10 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Tambah-->
+<?= $this->include('pelanggan/create'); ?>
+<!-- Modal Tambah -->
 
 <?= $this->endSection(); ?>
 
@@ -63,6 +66,10 @@
 <script>
     $(document).ready(()=> {
         $("#dataTable").DataTable();
+
+        $('#simpanTambah').click(() => {
+            
+        });
     });
 </script>
 <?php $this->endSection(); ?>

@@ -64,8 +64,8 @@ Pelanggan
                                                     <input type="text" class="form-control" name="no_hp_pelanggan" id="noHpPelangganEdit" value="<?=$pelanggan['no_hp_pelanggan']; ?>">
                                                 </div>
                                                 <div class="mb-2">
-                                                    <label for="alamatPelangganEdit" class="form-label">Alamat pelanggan</label>
-                                                    <input type="text" class="form-control" name="alamat_pelanggan" id="alamatPelangganEdit" value="<?= $pelanggan['alamat_pelanggan']; ?>">
+                                                    <label for="alamatPelanggan" class="form-label">Alamat pelanggan</label>
+                                                    <textarea class="form-control" name="alamat_pelanggan" id="alamatPelangganEdit"><?= $pelanggan['alamat_pelanggan']; ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

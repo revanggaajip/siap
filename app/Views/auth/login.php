@@ -40,16 +40,18 @@
             <div class="card-group d-block d-md-flex row">
               <div class="card col-md-7 p-4 mb-0">
                 <form action="<?= base_url('/login'); ?>" method="post">
+                <?= csrf_field(); ?>
                 <div class="card-body">
                   <h1>Login</h1>
+                  <?= $this->include('layouts/_partials/notification'); ?>
                   <p class="text-medium-emphasis">Silahkan input username dan password</p>
                   <div class="input-group mb-3">
                       <span class="input-group-text"><i class="fas fa-user icon"></i></span>
-                    <input class="form-control" type="text" placeholder="Username">
+                    <input class="form-control" type="text" placeholder="Username" name="username">
                   </div>
                   <div class="input-group mb-4">
                       <span class="input-group-text"><i class="fas fa-lock icon"></i></span>
-                    <input class="form-control" type="password" placeholder="Password">
+                    <input class="form-control" type="password" placeholder="Password" name="password">
                   </div>
                   <div class="row">
                     <div class="col-6">

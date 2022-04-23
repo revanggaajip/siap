@@ -77,13 +77,13 @@
                     <div class="row mb-4">
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
-                                <label for="dpTransaksiHeader" class="form-label">Uang muka</label>
+                                <label for="dpTransaksiHeader" class="form-label">Nominal Pembayaran</label>
                                 <input type="number" id="dpTransaksiHeader" name="dp_transaksi" class="form-control" onchange="piutangTransaksi()" onkeyup="piutangTransaksi()">
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
-                                <label for="piutangTransaksiHeader" class="form-label">Total Piutang</label>
+                                <label for="piutangTransaksiHeader" class="form-label">Nominal Piutang</label>
                                 <input type="text" id="piutangTransaksiHeader" name="piutang_transaksi" class="form-control" readonly>
                             </div>
                         </div>

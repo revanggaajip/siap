@@ -12,7 +12,7 @@
                 <h5>
                     <?= $title; ?>
                 </h5>
-                <form action="<?= base_url('laporan-penjualan/cetak') ?>" method="post" target="_blank">
+                <form action="<?= base_url('laporan-piutang/cetak') ?>" method="post" target="_blank">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="periode_awal" value="<?= $periode_awal; ?>">
                     <input type="hidden" name="periode_akhir" value="<?= $periode_akhir; ?>">
@@ -27,21 +27,23 @@
                         <tr>
                             <th width="5%">No</th>
                             <th>Tanggal</th>
-                            <th>Nama Barang</th>
-                            <th>Harga</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
+                            <th>Nama Pelanggan</th>
+                            <th>Nominal Transaksi</th>
+                            <th>Nominal Pembayaran</th>
+                            <th>Nominal Piutang</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($listLaporan as $key => $laporan) :?>
                         <tr>
-                            <td><?= $key+1; ?></td>
+                            <td><?= $key + 1; ?></td>
                             <td><?= date('d-m-Y', strtotime($laporan['tanggal_transaksi'])); ?></td>
-                            <td><?= $laporan['nama_barang']; ?></td>
-                            <td><?= rupiah($laporan['harga_barang']); ?></td>
-                            <td><?= $laporan['quantity_barang']; ?> <?= $laporan['satuan_barang']; ?></td>
-                            <td><?= rupiah($laporan['harga_barang'] * $laporan['quantity_barang']); ?></td>
+                            <td><?= $laporan['nama_pelanggan']; ?></td>
+                            <td><?= rupiah($laporan['total_transaksi']); ?></td>
+                            <td><?= rupiah($laporan['total_transaksi'] - $laporan['piutang_transaksi']); ?></td>
+                            <td><?= rupiah($laporan['piutang_transaksi']); ?></td>
+                            <td class="<?= $laporan['status_transaksi'] == 'Lunas' ? 'text-success' : 'text-danger'; ?>"><?= $laporan['status_transaksi']; ?></td>
                         </tr>
                         <?php endforeach; ?>                    
                     </tbody>

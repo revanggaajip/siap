@@ -18,4 +18,16 @@ class JurnalDetail extends Model
         'kredit'
     ];
     
+    public function laporanJurnalUmumDetail() {
+        $data = $this->join('akun', 'akun.id_akun = jurnal_detail.id_akun')
+        ->get()->getResultArray();
+        return $data;
+    }
+
+    public function neraca($awal, $akhir) {
+        $data = $this->join('jurnal_header', 'jurnal_header.id_jurnal_header = jurnal_detail.id_jurnal_header')
+        ->where("jurnal_header.tanggal_jurnal BETWEEN '$awal' AND '$akhir'")
+        ->get()->getResultArray();
+        return $data;
+    }
 }

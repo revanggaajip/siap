@@ -24,10 +24,9 @@ class TransaksiHeader extends Model
     ];
 
     public function listPiutang() {
-        $data = $this->db->query('SELECT * FROM transaksi_header 
-        JOIN pelanggan ON pelanggan.id_pelanggan = transaksi_header.id_pelanggan
-        WHERE transaksi_header.jenis_transaksi = "Kredit"
-        AND transaksi_header.status_transaksi = "Belum Lunas"')->getResultArray();
+        $data = $this->join('pelanggan', 'pelanggan.id_pelanggan = transaksi_header.id_pelanggan')
+        ->where('transaksi_header.jenis_transaksi', 'Kredit')
+        ->where('transaksi_header.status_transaksi', 'Belum Lunas')->get()->getResultArray();
         return $data;
     }
 
@@ -39,14 +38,21 @@ class TransaksiHeader extends Model
     }
 
     public function laporanPenjualan($awal, $akhir) {
-        $data = $this->select('*')
-        ->join('transaksi_detail', 'transaksi_detail.id_transaksi_header = transaksi_header.id_transaksi_header')
+        $data = $this->join('transaksi_detail', 'transaksi_detail.id_transaksi_header = transaksi_header.id_transaksi_header')
         ->join('barang', 'barang.id_barang = transaksi_detail.id_barang')
-        ->where('transaksi_header.jenis_transaksi', 'tunai')
+        // ->where('transaksi_header.jenis_transaksi', 'tunai')
         ->where("transaksi_header.tanggal_transaksi BETWEEN '$awal' AND '$akhir'")
+        ->orderBy('transaksi_header.tanggal_transaksi')
         ->get()->getResultArray();
         return $data;
+    }
 
+    public function laporanPiutang($awal, $akhir) {
+        $data = $this->join('pelanggan', 'pelanggan.id_pelanggan = transaksi_header.id_pelanggan')
+        ->where("transaksi_header.tanggal_transaksi BETWEEN '$awal' AND '$akhir'")
+        ->orderBy('transaksi_header.tanggal_transaksi')
+        ->get()->getResultArray();
+        return $data;
     }
 
 }

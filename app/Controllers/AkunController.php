@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Akun;
-use Exception;
 use Config\Services;
 
 class AkunController extends BaseController

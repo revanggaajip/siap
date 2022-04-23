@@ -38,11 +38,12 @@ class LaporanPenjualanController extends BaseController
     {
         $awal = $this->request->getVar('periode_awal');
         $akhir = $this->request->getVar('periode_akhir');
+        $filename = "Laporan penjualan periode ".date('d/m/Y',strtotime($awal))." sampai". date('d/m/Y',strtotime($akhir));
         $data['listLaporan'] = $this->transaksiHeader->laporanPenjualan($awal, $akhir);
-        $filename = "Laporan penjualan periode $awal s/d $akhir";
-        $dompdf = new Dompdf();
-        $dompdf->setBasePath(base_url('assets/css/sb-admin-2.css'));
-        $dompdf->loadHtml(view('history/laporan', $data));
+        $data['awal'] = $awal;
+        $data['akhir'] = $akhir;
+        $dompdf = new Dompdf;
+        $dompdf->loadHtml(view('laporan/penjualan/cetak', $data));
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         $dompdf->stream($filename, ['Attachment' => 0]);

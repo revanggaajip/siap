@@ -113,6 +113,11 @@ class TransaksiKreditController extends BaseController
             $total += $item['subtotal'];
         }
         $cart->destroy();
+
+        if(!$this->request->getVar('id_pelanggan')) {
+            session()->setFlashdata('danger', 'Data pelanggan belum dipilih');
+            return redirect()->to(base_url('transaksi-kredit'));
+        }
         
         // simpan data transaksi header
         $this->header->insert([

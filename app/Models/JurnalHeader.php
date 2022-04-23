@@ -17,4 +17,25 @@ class JurnalHeader extends Model
         'keterangan_jurnal'
     ];
 
+    public function jurnalUmum() {
+        $data = $this->join('transaksi_header', 'transaksi_header.id_transaksi_header = jurnal_header.id_transaksi_header')
+        ->where('jurnal_header.status_posting_jurnal', 'Belum Posting')
+        ->orderBy('transaksi_header.tanggal_transaksi')
+        ->get()->getResultArray();
+        return $data;
+    }
+
+    public function laporanJurnalUmumHeader($awal, $akhir) {
+        $data = $this->where("jurnal_header.tanggal_jurnal BETWEEN '$awal' AND '$akhir'")
+        ->orderBy('jurnal_header.tanggal_jurnal')
+        ->get()->getResultArray();
+        return $data;
+    }
+
+    public function bukuBesarHeader($awal, $akhir) {
+        $data = $this->where("tanggal_jurnal BETWEEN '$awal' AND '$akhir'")
+        // ->where('status_posting', 1)
+        ->get()->getResultArray();
+        return $data;
+    }
 }

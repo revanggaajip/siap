@@ -38,6 +38,10 @@ class AngsuranController extends BaseController
         $statusTransaksi = "Belum Lunas";
         $transaksi = $this->transaksiHeader->where("id_transaksi_header", $id)->first();
         $piutang = intval($transaksi['piutang_transaksi']) - $this->request->getVar("nominal_angsuran");
+        if ($piutang < 0) {
+            session()->setFlashdata('danger', 'Nominal angsuran melebihi piutang');
+            return redirect()->to(base_url('angsuran/detail/'.$id));
+        }
         $this->angsuran->save([
             'id_angsuran' => 'ANG-'.date("Ymd") . "-" . date("Hi") . "-" . date("s"),
             'tanggal_angsuran' => $this->request->getVar('tanggal_angsuran'),

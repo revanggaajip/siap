@@ -15,6 +15,9 @@ class AuthController extends BaseController
 
     public function index()
     {
+        if (session('id_pengguna') && session('nama_pengguna') && session('hak_akses_pengguna')) {
+            return redirect()->to(base_url('/'));
+        }
         return view('auth/login');
     }
 
@@ -41,12 +44,33 @@ class AuthController extends BaseController
 
     }
 
-    public function edit()
-    {}
-
-    public function update()
+    public function edit($id_pengguna)
     {
+        $data['title'] = "Ubah Password";
+        $data['breadcrumb'] = $this->breadcrumb($data['title']);
+        return view('auth/password', $data);
+    }
 
+    public function update($id_pengguna)
+    {
+        $passwordLama = $this->request->getVar('password_lama');
+        $passwordBaru = $this->request->getVar('password_baru');
+        $konfirmPassword = $this->request->getVar('konfirmasi_password');
+
+        $pengguna = $this->pengguna->where('id_pengguna', $id_pengguna)->first();
+        if(password_verify($passwordLama, $pengguna['password_pengguna'])) {
+            if ($passwordBaru == $konfirmPassword) {
+                $this->pengguna->save([
+                    'id_pengguna' => $id_pengguna,
+                    'password_pengguna' => password_hash($this->request->getVar('password_baru'), PASSWORD_DEFAULT)
+                ], ['id_pengguna' => $id_pengguna]);
+                return redirect()->to(base_url('/'))->with('success', 'Password berhasil diubah');
+            } else {
+                return redirect()->to(base_url('edit-password/'. $id_pengguna))->with('danger', 'Konfirmasi password tidak sesuai');
+            }
+        } else {
+            return redirect()->to(base_url('edit-password/'. $id_pengguna))->with('danger', 'Password salah');
+        }
     }
 
     public function logout() 
