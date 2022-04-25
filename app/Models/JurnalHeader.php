@@ -27,6 +27,7 @@ class JurnalHeader extends Model
 
     public function laporanJurnalUmumHeader($awal, $akhir) {
         $data = $this->where("jurnal_header.tanggal_jurnal BETWEEN '$awal' AND '$akhir'")
+        ->where('jurnal_header.status_posting_jurnal', 'Posting')
         ->orderBy('jurnal_header.tanggal_jurnal')
         ->get()->getResultArray();
         return $data;
@@ -34,7 +35,7 @@ class JurnalHeader extends Model
 
     public function bukuBesarHeader($awal, $akhir) {
         $data = $this->where("tanggal_jurnal BETWEEN '$awal' AND '$akhir'")
-        // ->where('status_posting', 1)
+        ->where('jurnal_header.status_posting_jurnal', 'Posting')
         ->get()->getResultArray();
         return $data;
     }
