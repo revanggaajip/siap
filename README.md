@@ -1,63 +1,35 @@
-# CodeIgniter 4 Application Starter
+# Sistem Informasi Akuntansi Penjualan (SIAP)
 
-## What is CodeIgniter?
+## Apa itu SIAP?
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+SIAP adalah sebuah sistem yang digunakan untuk mengelola data akuntansi penjualan disuatu toko. SIAP dibangun dengan bahasa pemrograman php 7.4 dengan bantuan framework codeigniter 4, untuk tampilan menggunakan template coreui.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Fitur SIAP
+- Master :
+  1. Mengelola data barang
+  2. Mengelola data pelanggan
+  3. Mengelola data akun
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+- Transaksi :
+  1. Input transaksi tunai
+  2. Input transaksi kredit
+  3. Input Angsuran
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+- Laporan :
+  1. Print out laporan penjualan
+  2. Print out laporan piutang
+  3. Print out laporan jurnal umum
+  4. Print out laporan buku besar
+  5. Print out laporan neraca
 
-## Installation & updates
+- Lainnya :
+  1. Mengelola data karyawan dan hak akses karyawan
+  2. Terdapat fitur Authentication
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## Screenshot
+![image](https://user-images.githubusercontent.com/65581336/165128891-f31136ff-ac24-4fc5-9334-6d75740f4210.png)
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+![image](https://user-images.githubusercontent.com/65581336/165129414-1fc8c8f5-adc1-49cf-b532-f52bb05e3db8.png)
 
-## Setup
+![image](https://user-images.githubusercontent.com/65581336/165129669-1389d51f-962c-4d34-b258-c1c1b40d9d7b.png)
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
-
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.3 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
