@@ -27,6 +27,7 @@ class JurnalDetail extends Model
     public function neraca($awal, $akhir) {
         $data = $this->join('jurnal_header', 'jurnal_header.id_jurnal_header = jurnal_detail.id_jurnal_header')
         ->where("jurnal_header.tanggal_jurnal BETWEEN '$awal' AND '$akhir'")
+        ->where('jurnal_header.status_posting_jurnal', 'Posting')
         ->get()->getResultArray();
         return $data;
     }
