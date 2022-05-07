@@ -11,13 +11,15 @@ class TransaksiDetailTable extends Migration
         $this->forge->addField([
             'id_transaksi_detail' => ['type' => 'bigint', 'constraint' => 20, 'unsigned' => true, 'auto_increment' => true],
             'id_transaksi_header' => ['type' => 'char', 'constraint' => 20],
-            'id_barang' => ['type' => 'bigint', 'constraint' => 20],
+            'id_barang' => ['type' => 'bigint', 'unsigned' => true,'constraint' => 20],
             'quantity_barang' => ['type' => 'bigint', 'constraint' => 20],
-            'subtotal_transaksi' => ['type' => 'long'],
+            'subtotal_transaksi' => ['type' => 'bigint'],
             'created_at' => ['type' => 'DATETIME', 'null' => true],
             'updated_at' => ['type' => 'DATETIME', 'null' => true]            
         ]);
         $this->forge->addKey('id_transaksi_detail', true);
+        $this->forge->addForeignKey('id_transaksi_header', 'transaksi_header', 'id_transaksi_header');
+        $this->forge->addForeignKey('id_barang', 'barang', 'id_barang');
         $this->forge->createTable('transaksi_detail');
     }
 

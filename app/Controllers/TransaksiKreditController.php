@@ -94,6 +94,25 @@ class TransaksiKreditController extends BaseController
         $data['validation'] = $this->services::validation();
         $total = 0;
         $cart = \Config\Services::cart();
+        // mengecek id pelanggan
+        if(!$this->request->getVar('id_pelanggan')) {
+            session()->setFlashdata('danger', 'Data pelanggan belum dipilih');
+            return redirect()->to(base_url('transaksi-kredit'));
+        }
+
+        // simpan data transaksi header
+        $this->header->insert([
+            'id_transaksi_header' => $this->request->getVar('id_transaksi_header'),
+            'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+            'jenis_transaksi' => 'Kredit',
+            'tanggal_transaksi' => $this->request->getVar('tanggal_transaksi'),
+            'tanggal_jatuh_tempo_transaksi' => $this->request->getVar('tanggal_jatuh_tempo_transaksi'),
+            'total_transaksi' => 0,
+            'piutang_transaksi' => str_replace("Rp. ","",$this->request->getVar('piutang_transaksi')),
+            'status_transaksi' => 'Belum Lunas',
+            'keterangan_transaksi' => $this->request->getVar('keterangan_transaksi'),
+        ]);
+        
         // Simpan data transaksi detail
         foreach($cart->contents() as $item) {
             $this->detail->save([
@@ -114,23 +133,12 @@ class TransaksiKreditController extends BaseController
         }
         $cart->destroy();
 
-        if(!$this->request->getVar('id_pelanggan')) {
-            session()->setFlashdata('danger', 'Data pelanggan belum dipilih');
-            return redirect()->to(base_url('transaksi-kredit'));
-        }
-        
-        // simpan data transaksi header
-        $this->header->insert([
+        // update total transaksi
+        $this->header->save([
             'id_transaksi_header' => $this->request->getVar('id_transaksi_header'),
-            'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-            'jenis_transaksi' => 'Kredit',
-            'tanggal_transaksi' => $this->request->getVar('tanggal_transaksi'),
-            'tanggal_jatuh_tempo_transaksi' => $this->request->getVar('tanggal_jatuh_tempo_transaksi'),
             'total_transaksi' => $total,
-            'piutang_transaksi' => str_replace("Rp. ","",$this->request->getVar('piutang_transaksi')),
-            'status_transaksi' => 'Belum Lunas',
-            'keterangan_transaksi' => $this->request->getVar('keterangan_transaksi'),
-        ]);
+        ], ['id_transaksi_header' => $this->request->getVar('id_transaksi_header')]);
+
         // simpan data jurnal header
         $idJurnal = str_replace("TRX-","JU-",$this->request->getVar('id_transaksi_header'));
         $this->jurnalHeader->insert([

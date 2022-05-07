@@ -18,6 +18,7 @@ class JurnalHeaderTable extends Migration
             'updated_at' => ['type' => 'DATETIME', 'null' => true]   
         ]);
         $this->forge->addKey('id_jurnal_header', true);
+        $this->forge->addForeignKey('id_transaksi_header', 'transaksi_header', 'id_transaksi_header');
         $this->forge->createTable('jurnal_header');
     }
 
