@@ -72,8 +72,12 @@ class BarangController extends BaseController
 
     public function delete($id_barang)
     {
-        $this->barang->delete(['id_barang' => $id_barang]);
-        session()->setFlashdata('success', 'Data barang berhasil dihapus');
+        $barang = $this->barang->delete(['id_barang' => $id_barang]);
+        if ($barang) {
+            session()->setFlashdata('success', 'Data barang berhasil dihapus');
+            return redirect()->to(base_url('barang'));
+        }
+        session()->setFlashdata('danger', 'Data tidak dapat dihapus karena terdapat transaksi');
         return redirect()->to(base_url('barang'));
     }
 }

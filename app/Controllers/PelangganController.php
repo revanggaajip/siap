@@ -67,8 +67,12 @@ class pelangganController extends BaseController
 
     public function delete($id_pelanggan)
     {
-        $this->pelanggan->delete(['id_pelanggan' => $id_pelanggan]);
-        session()->setFlashdata('success', 'Data pelanggan berhasil dihapus');
+        $pelanggan = $this->pelanggan->delete(['id_pelanggan' => $id_pelanggan]);
+        if ($pelanggan) {
+            session()->setFlashdata('success', 'Data pelanggan berhasil dihapus');
+            return redirect()->to(base_url('pelanggan'));
+        }
+        session()->setFlashdata('danger', 'Data tidak dapat dihapus karena terdapat transaksi');
         return redirect()->to(base_url('pelanggan'));
     }
 }
