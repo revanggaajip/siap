@@ -48,6 +48,7 @@ $routes->setAutoRoute(true);
         $routes->post('create', 'PenggunaController::create');
         $routes->put('edit/(:any)', 'PenggunaController::edit/$1');
         $routes->delete('delete/(:any)', 'PenggunaController::delete/$1');
+        $routes->get('reset-password/(:any)', 'PenggunaController::resetPassword/$1');
     });
 
     // Routes Barang

@@ -79,4 +79,18 @@ class PenggunaController extends BaseController
         session()->setFlashdata('success', 'Data Pengguna berhasil dihapus');
         return redirect()->to(base_url('pengguna'));
     }
+
+    public function resetPassword($id_pengguna)
+    {
+        $pengguna = $this->pengguna->where(['id_pengguna' => $id_pengguna])->first();
+         // Ambil data tanggal lahir untuk password
+        $passwordPengguna = date("dmY", strtotime($pengguna['tanggal_lahir_pengguna']));
+        // enkripsi data password
+        $encryptPassword = password_hash($passwordPengguna, PASSWORD_DEFAULT);
+        // update password
+        $this->pengguna->save(['id_pengguna' => $id_pengguna,'password_pengguna' => $encryptPassword],['id_pengguna' => $id_pengguna]);
+        session()->setFlashdata('success', 'Data password pengguna berhasil direset');
+        return redirect()->to(base_url('pengguna'));
+
+    }
 }
