@@ -12,4 +12,12 @@ class TransaksiDetail extends Model
     protected $useTimestamps    = true;
     protected $dateFormat       = 'datetime';
     protected $allowedFields    = ['id_transaksi_detail', 'id_transaksi_header', 'id_barang', 'quantity_barang', 'subtotal_transaksi'];
+
+    public function detailNota($id){
+        $data = $this->join('barang', 'barang.id_barang = transaksi_detail.id_barang')
+        ->where('transaksi_detail.id_transaksi_header', $id)
+        ->get()->getResultArray();
+
+        return $data;
+    }
 }

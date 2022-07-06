@@ -13,7 +13,8 @@ class TransaksiHeader extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id_transaksi_header',
-        'id_pelanggan', 
+        'id_pelanggan',
+        'nama_pelanggan',
         'jenis_transaksi', 
         'tanggal_transaksi', 
         'tanggal_jatuh_tempo_transaksi', 
@@ -26,7 +27,9 @@ class TransaksiHeader extends Model
     public function listPiutang() {
         $data = $this->join('pelanggan', 'pelanggan.id_pelanggan = transaksi_header.id_pelanggan')
         ->where('transaksi_header.jenis_transaksi', 'Kredit')
-        ->where('transaksi_header.status_transaksi', 'Belum Lunas')->get()->getResultArray();
+        ->where('transaksi_header.status_transaksi', 'Belum Lunas')
+        ->orderBy('transaksi_header.created_at', 'desc')
+        ->get()->getResultArray();
         return $data;
     }
 
@@ -55,4 +58,10 @@ class TransaksiHeader extends Model
         return $data;
     }
 
+    public function detailPelanggan($id) {
+        $data = $this->join('pelanggan', 'pelanggan.id_pelanggan = transaksi_header.id_pelanggan')
+        ->where('transaksi_header.id_transaksi_header', $id)
+        ->first();
+        return $data;
+    }
 }

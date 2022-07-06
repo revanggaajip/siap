@@ -9,8 +9,7 @@ use App\Models\JurnalHeader;
 use App\Models\TransaksiDetail;
 use App\Models\TransaksiHeader;
 use Config\Services;
-
-use function PHPUnit\Framework\isEmpty;
+use Dompdf\Dompdf;
 
 class TransaksiTunaiController extends BaseController
 {
@@ -30,8 +29,12 @@ class TransaksiTunaiController extends BaseController
         $data['title'] = $this->title;
         $data['listBarang'] = $this->barang->get()->getResultArray();
         $data['breadcrumb'] = $this->breadcrumb($this->title);
-
-        $data['id'] = "TRX-" . date("Ymd") . "-" . date("Hi") . "-" . date("s");
+        $jumlahTranksaksiHarian = $this->header->where('tanggal_transaksi', date('Y-m-d'))->countAllResults();
+        if($jumlahTranksaksiHarian > 0) {
+            $data['id'] = 'Transaksi-'.date('dmY')."-".sprintf("%03s", ++$jumlahTranksaksiHarian);
+        } else {
+            $data['id'] = 'Transaksi-'.date('dmY')."-001";
+        }
         return view('transaksi/tunai/index', $data);
     }
 
@@ -102,6 +105,7 @@ class TransaksiTunaiController extends BaseController
         $this->header->insert([
             'id_transaksi_header' => $this->request->getVar('id_transaksi_header'),
             'id_pelanggan' => null,
+            'nama_pelanggan' => $this->request->getVar('nama_pelanggan'),
             'jenis_transaksi' => 'Tunai',
             'tanggal_transaksi' => $this->request->getVar('tanggal_transaksi'),
             'tanggal_jatuh_tempo_transaksi' => null,
@@ -137,7 +141,7 @@ class TransaksiTunaiController extends BaseController
         ], ['id_transaksi_header' => $this->request->getVar('id_transaksi_header')]);
 
         // simpan data jurnal header
-        $idJurnal = str_replace("TRX-","JU-",$this->request->getVar('id_transaksi_header'));
+        $idJurnal = str_replace("Transaksi-","JU-",$this->request->getVar('id_transaksi_header'));
         $this->jurnalHeader->insert([
             'id_jurnal_header' => $idJurnal,
             'status_posting_jurnal' => 'Belum Posting',
@@ -160,8 +164,13 @@ class TransaksiTunaiController extends BaseController
                 'kredit' => $total
             ]
         ]);
-        session()->setFlashdata('success', 'Data transaksi berhasil disimpan');
-        return redirect()->to(base_url('transaksi-tunai'));
+        return redirect()->to(base_url('transaksi-tunai/bill/'.$this->request->getVar('id_transaksi_header')));
 
+    }
+
+    public function bill($id) {
+        $data['header'] = $this->header->where('id_transaksi_header', $id)->first();
+        $data['detail'] = $this->detail->detailNota($id);
+        return view('transaksi/tunai/bill', $data);
     }
 }

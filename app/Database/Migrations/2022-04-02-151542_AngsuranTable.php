@@ -9,9 +9,9 @@ class AngsuranTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id_angsuran' => ['type' => 'char', 'constraint' => 20],
+            'id_angsuran' => ['type' => 'char', 'constraint' => 21],
             'tanggal_angsuran' => ['type' => 'date'],
-            'id_transaksi_header' => ['type' => 'char', 'constraint' => 20],
+            'id_transaksi_header' => ['type' => 'char', 'constraint' => 22],
             'nomor_angsuran' => ['type' => 'int', 'constraint' => 3],
             'nominal_angsuran' => ['type' => 'bigint'],
             'piutang_transaksi' => ['type' => 'bigint'],
@@ -19,7 +19,6 @@ class AngsuranTable extends Migration
             'updated_at' => ['type' => 'DATETIME', 'null' => true]   
         ]);
         $this->forge->addKey('id_angsuran', true);
-        $this->forge->addForeignKey('id_transaksi_header', 'transaksi_header', 'id_transaksi_header');
         $this->forge->createTable('angsuran');
     }
 

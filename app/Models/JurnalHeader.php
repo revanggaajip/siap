@@ -20,7 +20,7 @@ class JurnalHeader extends Model
     public function jurnalUmum() {
         $data = $this->join('transaksi_header', 'transaksi_header.id_transaksi_header = jurnal_header.id_transaksi_header')
         ->where('jurnal_header.status_posting_jurnal', 'Belum Posting')
-        ->orderBy('transaksi_header.tanggal_transaksi')
+        ->orderBy('transaksi_header.created_at', 'desc')
         ->get()->getResultArray();
         return $data;
     }

@@ -42,8 +42,14 @@ class AngsuranController extends BaseController
             session()->setFlashdata('danger', 'Nominal angsuran melebihi piutang');
             return redirect()->to(base_url('angsuran/detail/'.$id));
         }
+        $jumlahAngsuranHarian = $this->angsuran->where('tanggal_angsuran', date('Y-m-d'))->countAllResults();
+        if($jumlahAngsuranHarian > 0) {
+            $idAngsuran = 'Angsuran-'.date('dmY')."-".sprintf("%03s", ++ $jumlahAngsuranHarian);
+        } else {
+            $idAngsuran = 'Angsuran-'.date('dmY')."-001";
+        }
         $this->angsuran->save([
-            'id_angsuran' => 'ANG-'.date("Ymd") . "-" . date("Hi") . "-" . date("s"),
+            'id_angsuran' => $idAngsuran,
             'tanggal_angsuran' => $this->request->getVar('tanggal_angsuran'),
             'id_transaksi_header' => $id,
             'nomor_angsuran' => $this->request->getVar('nomor_angsuran'),
@@ -61,7 +67,7 @@ class AngsuranController extends BaseController
             'piutang_transaksi' => $piutang
         ], ["id_transaksi_header" => $id]);
 
-        $idJurnal = "JU-" . date("Ymd") . "-" . date("Hi") . "-" . date("s");
+        $idJurnal = str_replace("Angsuran-","JUA-", $idAngsuran);
 
         $this->jurnalHeader->insert([
             'id_jurnal_header' => $idJurnal,
@@ -86,8 +92,14 @@ class AngsuranController extends BaseController
             ]
         ]);
 
-        session()->setFlashdata('success', 'Data angsuran berhasil disimpan');
-        return redirect()->to(base_url('angsuran'));
+        return redirect()->to(base_url('angsuran/bill/'). $idAngsuran);
 
+    }
+
+    public function bill($id) {
+        $data['angsuran'] = $this->angsuran->where('id_angsuran', $id)->first();
+        $idTransaksi = $data['angsuran']['id_transaksi_header'];
+        $data['kredit'] = $this->transaksiHeader->detailPelanggan($idTransaksi);
+        return view('transaksi/angsuran/bill', $data);
     }
 }

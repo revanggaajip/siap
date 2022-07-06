@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan piutang periode <?= date('d/m/Y',strtotime($awal)); ?> s/d <?= date('d/m/Y',strtotime($akhir)); ?></title>
+    <title>Laporan piutang periode <?= tanggal($awal); ?> s/d <?= tanggal($akhir); ?></title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
 
-        th {
-            background-color: #FBC100;
-            color: black;
-        }
+    th {
+        background-color: #FBC100;
+        color: black;
+    }
     </style>
 </head>
+
 <body>
     <div class="header" style="text-align: center; margin-top: -40px;">
         <h1 style="margin-bottom: 5px;">Toko Obat Batik Murni</h1>
@@ -31,8 +36,8 @@
         <hr>
     </div>
     <div class="keterangan" style="text-align: center; margin-bottom: 20px;">
-       <p style="font-size: 24px; font-weight: bold;">Laporan Piutang</p>
-       <p style="margin-top: -20px;">Periode <?= date('d/m/Y',strtotime($awal)); ?> - <?= date('d/m/Y',strtotime($akhir)); ?></p>
+        <p style="font-size: 24px; font-weight: bold;">Laporan Piutang</p>
+        <p style="margin-top: -20px;">Periode <?= tanggal($awal); ?> - <?= tanggal($akhir); ?></p>
     </div>
     <table>
         <thead>
@@ -58,9 +63,10 @@
                 <td><?= rupiah($laporan['total_transaksi']); ?></td>
                 <td><?= rupiah($laporan['total_transaksi'] - $laporan['piutang_transaksi']); ?></td>
                 <td><?= rupiah($laporan['piutang_transaksi']); ?></td>
-                <td class="<?= $laporan['status_transaksi'] == 'Lunas' ? 'text-success' : 'text-danger'; ?>"><?= $laporan['status_transaksi']; ?></td>
+                <td class="<?= $laporan['status_transaksi'] == 'Lunas' ? 'text-success' : 'text-danger'; ?>">
+                    <?= $laporan['status_transaksi']; ?></td>
             </tr>
-            <?php endforeach; ?>     
+            <?php endforeach; ?>
         </tbody>
         <tfoot>
             <tr style="background-color: #FBC100;">
@@ -68,6 +74,7 @@
                 <td colspan="2"><strong><?= rupiah($total); ?></strong></td>
             </tr>
         </tfoot>
-</table>
+    </table>
 </body>
+
 </html>

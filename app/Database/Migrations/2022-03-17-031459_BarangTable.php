@@ -25,11 +25,11 @@ class BarangTable extends Migration
                 'constraint'    => 11
             ],
             'satuan_barang' => [
-                'type'          => 'ENUM',
-                'constraint'    => ['Gram', 'KG', 'Drum']
+                'type'          => 'VARCHAR',
+                'constraint'    => 50
             ],
             'harga_barang' => [
-                'type'          => 'double',
+                'type'          => 'DOUBLE',
             ],
             'created_at'    => [
                 'type'          => 'DATETIME',

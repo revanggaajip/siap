@@ -7,7 +7,8 @@
 * Licensed under MIT (https://coreui.io/license)
 -->
 <html lang="en">
-  <head>
+
+<head>
     <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,21 +41,23 @@
     <!-- Main styles for this application-->
     <link href="<?= base_url('css/style.min.css') ?>" rel="stylesheet">
     <?= $this->renderSection('styles'); ?>
-  </head>
-  <body>
+</head>
+
+<body>
     <?= $this->include('layouts/_partials/sidebar'); ?>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-      <?= $this->include('layouts/_partials/header'); ?>
-      <div class="body flex-grow-1 px-3">
-        <?= $this->include('layouts/_partials/notification'); ?>
-        <?= $this->renderSection('content'); ?>
-      </div>
-      <?= $this->include('layouts/_partials/footer'); ?>
+        <?= $this->include('layouts/_partials/header'); ?>
+        <div class="body flex-grow-1 px-3">
+            <?= $this->include('layouts/_partials/notification'); ?>
+            <?= $this->renderSection('content'); ?>
+        </div>
+        <?= $this->include('layouts/_partials/footer'); ?>
     </div>
     <!-- CoreUI and necessary plugins-->
     <script src="<?= base_url('vendors/jquery/jquery-3.6.0.min.js'); ?>"></script>
     <script src="<?= base_url('vendors/@coreui/coreui/js/coreui.bundle.min.js') ?>"></script>
     <script src="<?= base_url('vendors/simplebar/js/simplebar.min.js') ?>"></script>
     <?= $this->renderSection('scripts'); ?>
-  </body>
+</body>
+
 </html>
