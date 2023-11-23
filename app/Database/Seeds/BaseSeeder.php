@@ -8,7 +8,11 @@ class BaseSeeder extends Seeder
 {
     public function run()
     {
+        $this->call('InstansiSeeder');
         $this->call('PenggunaSeeder');
-        $this->call('AkunSeeder');
+        $this->call('SatuanSeeder');
+        $this->call('GolonganSeeder');
+        $this->call('KategoriSeeder');
+        $this->call('JenisSeeder');
     }
 }

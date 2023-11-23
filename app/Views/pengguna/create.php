@@ -24,7 +24,7 @@
             <label for="hakAksesPengguna" class="mb-1">Hak akses pengguna</label>
             <select name="hak_akses_pengguna" id="hakAksesPengguna" class="form-select">
                 <option value="Admin">Admin</option>
-                <option value="Pemilik">Pemilik</option>
+                <option value="User">User</option>
             </select>
         </div>
       </div>

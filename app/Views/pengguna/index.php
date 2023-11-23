@@ -33,46 +33,46 @@ Pengguna
                         <?php foreach($listPengguna as $key => $pengguna) :?>
                         <tr>
                             <td><?= $key+1; ?></td>
-                            <td><?= $pengguna['nama_pengguna'] ?></td>
-                            <td><?= $pengguna['username_pengguna']; ?></td>
-                            <td><?= $pengguna['hak_akses_pengguna']; ?></td>
+                            <td><?= $pengguna['nama'] ?></td>
+                            <td><?= $pengguna['username']; ?></td>
+                            <td><?= $pengguna['hak_akses']; ?></td>
                             <td>
                                 <!-- Tombol Edit -->
-                                <button type="button" class="btn btn-warning btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#editData_<?= $pengguna['id_pengguna']; ?>">
+                                <button type="button" class="btn btn-warning btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#editData_<?= $pengguna['id']; ?>">
                                     <i class="fas fa-edit"></i>&nbsp;Ubah
                                 </button>
                                 <!-- Akhir Tombol Edit -->
 
                                 <!-- Modal Edit -->
-                                <div class="modal fade" id="editData_<?= $pengguna['id_pengguna'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="editData_<?= $pengguna['id'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="editModalLabel">Form Ubah pengguna <?= $pengguna['nama_pengguna']; ?></h5>
+                                                <h5 class="modal-title" id="editModalLabel">Form Ubah pengguna <?= $pengguna['nama']; ?></h5>
                                                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="<?= base_url('pengguna/edit/'.$pengguna['id_pengguna']); ?>" method="post">
+                                            <form action="<?= base_url('pengguna/edit/'.$pengguna['id']); ?>" method="post">
                                             <?php csrf_field(); ?>
                                             <input type="hidden" name="_method" value="PUT">
-                                            <input type="hidden" name="password_pengguna" value="<?= $pengguna['password_pengguna']; ?>">
+                                            <input type="hidden" name="password_pengguna" value="<?= $pengguna['password']; ?>">
                                             <div class="modal-body">
                                                 <div class="mb-2">
                                                     <label for="namaPenggunaEdit" class="form-label">Nama pengguna</label>
-                                                    <input type="text" class="form-control" name="nama_pengguna" id="namaPenggunaEdit" value="<?= $pengguna['nama_pengguna']; ?>">
+                                                    <input type="text" class="form-control" name="nama_pengguna" id="namaPenggunaEdit" value="<?= $pengguna['nama']; ?>">
                                                 </div>
                                                 <div class="mb-2">
                                                     <label for="tglLahirPenggunaEdit" class="form-label">Tanggal lahir pengguna</label>
-                                                    <input type="date" class="form-control" name="tanggal_lahir_pengguna" id="tglLahirPenggunaEdit" value="<?=$pengguna['tanggal_lahir_pengguna']; ?>">
+                                                    <input type="date" class="form-control" name="tanggal_lahir_pengguna" id="tglLahirPenggunaEdit" value="<?=$pengguna['tanggal_lahir']; ?>">
                                                 </div>
                                                 <div class="mb-2">
                                                     <label for="usernamePenggunaEdit" class="form-label">Username pengguna</label>
-                                                    <input type="text" class="form-control" name="username_pengguna" id="usernamePenggunaEdit" value="<?= $pengguna['username_pengguna']; ?>">
+                                                    <input type="text" class="form-control" name="username_pengguna" id="usernamePenggunaEdit" value="<?= $pengguna['username']; ?>">
                                                 </div>
                                                 <div class="mb-2">
                                                     <label for="hakAksesPenggunaEdit" class="mb-1">Hak akses pengguna</label>
                                                     <select name="hak_akses_pengguna" id="hakAksesPenggunaEdit" class="form-select">
-                                                        <option value="Admin" <?= $pengguna['hak_akses_pengguna'] == 'Admin' ? 'selected' : null; ?>>Admin</option>
-                                                        <option value="Pemilik" <?= $pengguna['hak_akses_pengguna'] == 'Pemilik' ? 'selected' : null; ?>>Pemilik</option>
+                                                        <option value="Admin" <?= $pengguna['hak_akses'] == 'Admin' ? 'selected' : null; ?>>Admin</option>
+                                                        <option value="User" <?= $pengguna['hak_akses'] == 'User' ? 'selected' : null; ?>>User</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -87,24 +87,24 @@ Pengguna
                                 <!-- Akhir Modal Edit -->
 
                                 <!-- Tombol Hapus -->
-                                <button type="button" class="btn btn-danger btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#hapusData_<?= $pengguna['id_pengguna']; ?>">
+                                <button type="button" class="btn btn-danger btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#hapusData_<?= $pengguna['id']; ?>">
                                     <i class="fas fa-trash"></i>&nbsp;Hapus
                                 </button>
                                 <!-- Akhir Tombol Hapus -->
                                 
                                 <!-- Modal hapus -->
-                                <div class="modal fade" id="hapusData_<?= $pengguna['id_pengguna'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="hapusData_<?= $pengguna['id'] ?>" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus <?= $pengguna['nama_pengguna']; ?></h5>
+                                                <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus <?= $pengguna['nama']; ?></h5>
                                                 <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Apakah anda yakin akan menghapus data <?= $pengguna['nama_pengguna']; ?>
+                                                Apakah anda yakin akan menghapus data <?= $pengguna['nama']; ?>
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="<?= base_url('pengguna/delete/'.$pengguna['id_pengguna']); ?>" method="post">
+                                                <form action="<?= base_url('pengguna/delete/'.$pengguna['id']); ?>" method="post">
                                                     <?php csrf_field(); ?>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="button" class="btn btn-danger text-white" data-coreui-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Batal</button>

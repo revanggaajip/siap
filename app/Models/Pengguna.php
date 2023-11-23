@@ -7,10 +7,7 @@ use CodeIgniter\Model;
 class Pengguna extends Model
 {
     protected $table            = 'pengguna';
-    protected $primaryKey       = 'id_pengguna';
-    protected $useAutoIncrement = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_pengguna', 'tanggal_lahir_pengguna', 'username_pengguna', 'password_pengguna', 'hak_akses_pengguna'];
+    protected $allowedFields    = ['nama', 'tanggal_lahir', 'username', 'password', 'hak_akses'];
     protected $useTimestamps    = true;
-    protected $dateFormat       = 'datetime';
 }

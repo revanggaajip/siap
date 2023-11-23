@@ -10,7 +10,7 @@ class AuthController extends BaseController
 
     public function __construct()
     {
-        $this->pengguna = new Pengguna;
+        $this->pengguna = new Pengguna();
     }
 
     public function index()
@@ -25,13 +25,13 @@ class AuthController extends BaseController
     {
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
-        $pengguna = $this->pengguna->where('username_pengguna', $username)->first();
+        $pengguna = $this->pengguna->where('username', $username)->first();
         if ($pengguna) {
-            if (password_verify($password, $pengguna['password_pengguna'])) {
+            if (password_verify($password, $pengguna['password'])) {
                 $session_data = [
-                    'id_pengguna' => $pengguna['id_pengguna'],
-                    'nama_pengguna' => $pengguna['nama_pengguna'],
-                    'hak_akses_pengguna' => $pengguna['hak_akses_pengguna']
+                    'id_pengguna' => $pengguna['id'],
+                    'nama_pengguna' => $pengguna['nama'],
+                    'hak_akses_pengguna' => $pengguna['hak_akses']
                 ];
                 session()->set($session_data);
                 return redirect()->to(base_url('/'));
@@ -57,13 +57,13 @@ class AuthController extends BaseController
         $passwordBaru = $this->request->getVar('password_baru');
         $konfirmPassword = $this->request->getVar('konfirmasi_password');
 
-        $pengguna = $this->pengguna->where('id_pengguna', $id_pengguna)->first();
-        if(password_verify($passwordLama, $pengguna['password_pengguna'])) {
+        $pengguna = $this->pengguna->where('id', $id_pengguna)->first();
+        if(password_verify($passwordLama, $pengguna['password'])) {
             if ($passwordBaru == $konfirmPassword) {
                 $this->pengguna->save([
-                    'id_pengguna' => $id_pengguna,
-                    'password_pengguna' => password_hash($this->request->getVar('password_baru'), PASSWORD_DEFAULT)
-                ], ['id_pengguna' => $id_pengguna]);
+                    'id' => $id_pengguna,
+                    'password' => password_hash($this->request->getVar('password_baru'), PASSWORD_DEFAULT)
+                ], ['id' => $id_pengguna]);
                 return redirect()->to(base_url('/'))->with('success', 'Password berhasil diubah');
             } else {
                 return redirect()->to(base_url('edit-password/'. $id_pengguna))->with('danger', 'Konfirmasi password tidak sesuai');

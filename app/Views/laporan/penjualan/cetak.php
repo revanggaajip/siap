@@ -36,7 +36,7 @@
         <hr>
     </div>
     <div class="keterangan" style="text-align: center; margin-bottom: 20px;">
-        <p style="font-size: 24px; font-weight: bold;">Laporan Penjualan</p>
+        <p style="font-size: 24px; font-weight: bold;">Laporan Penjualan <?= ucfirst($jenis); ?></p>
         <p style="margin-top: -20px;">Periode <?= tanggal($awal); ?> - <?= tanggal($akhir); ?></p>
     </div>
     <table>

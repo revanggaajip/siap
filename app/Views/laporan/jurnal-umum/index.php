@@ -12,7 +12,8 @@
                 <h5>
                     <?= $title; ?>
                 </h5>
-                <a href="<?= base_url('jurnal-umum/cetak'); ?>" class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Cetak</a>
+                <a href="<?= base_url('jurnal-umum/cetak'); ?>" class="btn btn-primary btn-sm"><i
+                        class="fas fa-print"></i> Cetak</a>
             </div>
         </div>
         <div class="card-body">
@@ -37,22 +38,20 @@
                             <td class="text-center">
                                 <form action="<?= base_url('jurnal-umum/posting'); ?>" method="post">
                                     <?= csrf_field(); ?>
-                                    <input type="hidden" name="id_jurnal_header" value="<?= $laporan['id_jurnal_header']; ?>">
-                                    <button class="btn btn-info text-white btn-sm"><i class="fas fa-paper-plane"></i> Posting</button>
+                                    <input type="hidden" name="id_jurnal_header"
+                                        value="<?= $laporan['id_jurnal_header']; ?>">
+                                    <button class="btn btn-info text-white btn-sm"><i class="fas fa-paper-plane"></i>
+                                        Posting</button>
                                 </form>
                             </td>
                         </tr>
-                        <?php endforeach; ?>                    
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Modal Tambah-->
-<?= $this->include('pelanggan/create'); ?>
-<!-- Modal Tambah -->
 
 <?= $this->endSection(); ?>
 
@@ -64,12 +63,12 @@
 <script src="<?= base_url('vendors/dataTables/js/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?= base_url('vendors/dataTables/js/dataTables.bootstrap4.min.js'); ?>"></script>
 <script>
-    $(document).ready(()=> {
-        $("#dataTable").DataTable();
+$(document).ready(() => {
+    $("#dataTable").DataTable();
 
-        $('#simpanTambah').click(() => {
-            
-        });
+    $('#simpanTambah').click(() => {
+
     });
+});
 </script>
 <?php $this->endSection(); ?>

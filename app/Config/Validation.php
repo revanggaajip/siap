@@ -40,57 +40,48 @@ class Validation
     //--------------------------------------------------------------------
     // Rules
     //--------------------------------------------------------------------
-    public $createAkun = [
-        'id_akun' => 'required|is_unique[akun.id_akun]',
-        'nama_akun' => 'required|is_unique[akun.nama_akun]',
-        'jenis_akun' => 'required'
+    public $jenis = [
+        'nama' => 'required|string|is_unique[jenis.nama,id,{id}]',
     ];
 
-    public $editAkun = [
-        'id_akun' => 'required|is_unique[akun.id_akun,id_akun,{id_akun}]',
-        'nama_akun' => 'required|is_unique[akun.nama_akun,id_akun,{id_akun}]',
-        'jenis_akun' => 'required'
+    public $golongan = [
+        'nama' => 'required|string|is_unique[golongan.nama,id,{id}]',
     ];
 
-    public $createPengguna = [
-        'nama_pengguna' => 'required',
-        'tanggal_lahir_pengguna' => 'required',
-        'username_pengguna' => 'required|is_unique[pengguna.username_pengguna]',
-        'password_pengguna' => 'required',
-        'hak_akses_pengguna' => 'required'
+    public $satuan = [
+        'nama' => 'required|string|is_unique[satuan.nama,id,{id}]',
+    ];
+
+    public $kategori = [
+        'nama' => 'required|string|is_unique[kategori.nama,id,{id}]',
     ];
     
-    public $editPengguna = [
-        'nama_pengguna' => 'required',
-        'tanggal_lahir_pengguna' => 'required',
-        'username_pengguna' => 'required|is_unique[pengguna.username_pengguna,id_pengguna,{id_pengguna}]',
-        'hak_akses_pengguna' => 'required'
+    public $knm = [
+        'nama' => 'required|string|is_unique[kategori.nama,id,{id}]',
     ];
 
-    public $createBarang = [
-        'nama_barang' => 'required',
-        'stok_barang' => 'required|integer',
-        'satuan_barang' => 'required',
-        'harga_barang' => 'required|integer'
+    public $obat = [
+        'nama' => 'required|string',
+        'kandungan' => 'required|string',
+        'satuan' => 'required|string',
+        'kategori' => 'required|string',
+        'golongan' => 'required|string',
+        'jenis' => 'required|string',
+        'kapasitas' => 'required|string'
     ];
 
-    public $editBarang = [
-        'nama_barang' => 'required',
-        'stok_barang' => 'required|integer',
-        'satuan_barang' => 'required',
-        'harga_barang' => 'required|integer'
+    public $pengguna = [
+        'nama' => 'required|string',
+        'tanggal_lahir' => 'required',
+        'username' => 'required',
+        'hak_akses' => 'required'
     ];
 
-    public $createPelanggan = [
-        'nama_pelanggan' => 'required',
-        'no_hp_pelanggan' => 'required|is_unique[pelanggan.no_hp_pelanggan]',
-        'alamat_pelanggan' => 'required',
-    ];
-
-    public $editPelanggan = [
-        'nama_pelanggan' => 'required',
-        'no_hp_pelanggan' => 'required|is_unique[pelanggan.no_hp_pelanggan,id_pelanggan,{id_pelanggan}]',
-        'alamat_pelanggan' => 'required',
+    public $penerimaan = [
+        'no_faktur' => 'required|string',
+        'tanggal' => 'required',
+        'sp' => 'required',
+        'nama_supplier' => 'required'
     ];
 
 }

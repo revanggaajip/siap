@@ -9,31 +9,31 @@ class PenggunaTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id_pengguna' => [
+            'id' => [
                 'type'              => 'BIGINT',
                 'constraint'        => 20,
                 'unsigned'          => true,
                 'auto_increment'    => true
             ],
-            'nama_pengguna' => [
+            'nama' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 100
             ],
-            'tanggal_lahir_pengguna' => [
+            'tanggal_lahir' => [
                 'type'              => 'DATE'
             ],
-            'username_pengguna' => [
+            'username' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 50,
                 'unique'            => true,
             ],
-            'password_pengguna' => [
+            'password' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
-            'hak_akses_pengguna'=> [
+            'hak_akses'=> [
                 'type'              => 'ENUM',
-                'constraint'        => ['Admin', 'Pemilik']
+                'constraint'        => ['Admin', 'User']
             ],
             'created_at'    => [
                 'type'          => 'DATETIME',
@@ -44,7 +44,7 @@ class PenggunaTable extends Migration
                 'null'          => TRUE
             ]
         ]);
-        $this->forge->addKey('id_pengguna', true);
+        $this->forge->addKey('id', true);
         $this->forge->createTable('pengguna');
     }
 

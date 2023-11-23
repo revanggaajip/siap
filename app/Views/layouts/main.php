@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v4.1.1
-* @link https://coreui.io
-* Copyright (c) 2022 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
 <html lang="en">
 
 <head>
@@ -16,7 +9,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title><?= $this->renderSection('title'); ?> - SIAP</title>
+    <title><?= $this->renderSection('title'); ?> - <?= config('App')->name; ?></title>
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -38,6 +31,7 @@
     <link rel="stylesheet" href="<?= base_url('vendors/simplebar/css/simplebar.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/vendors/simplebar.css') ?>">
     <link rel="stylesheet" href="<?= base_url('vendors/fontawesome/css/all.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('vendors/select2/css/select2.min.css'); ?>">
     <!-- Main styles for this application-->
     <link href="<?= base_url('css/style.min.css') ?>" rel="stylesheet">
     <?= $this->renderSection('styles'); ?>
@@ -57,6 +51,7 @@
     <script src="<?= base_url('vendors/jquery/jquery-3.6.0.min.js'); ?>"></script>
     <script src="<?= base_url('vendors/@coreui/coreui/js/coreui.bundle.min.js') ?>"></script>
     <script src="<?= base_url('vendors/simplebar/js/simplebar.min.js') ?>"></script>
+    <script src="<?= base_url('vendors/select2/js/select2.min.js') ?>"></script>
     <?= $this->renderSection('scripts'); ?>
 </body>
 

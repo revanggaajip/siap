@@ -20,15 +20,28 @@ Laporan Penjualan
                         <div class="row mt-4">
                             <div class="col-md-6 mb-2">
                                 <label for="priodeAwal" class="mb-1">Periode Awal</label>
-                                <input type="date" class="form-control" id="periodeAwal" name="periode_awal" value="<?= date('Y-m-d') ?>">
+                                <input type="date" class="form-control" id="periodeAwal" name="periode_awal"
+                                    value="<?= date('Y-m-d') ?>">
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="priodeAkhir" class="mb-1">Periode Akhir</label>
-                                <input type="date" class="form-control" id="periodeAkhir" name="periode_akhir" value="<?= date('Y-m-d') ?>">
+                                <input type="date" class="form-control" id="periodeAkhir" name="periode_akhir"
+                                    value="<?= date('Y-m-d') ?>">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success text-white mt-3"><i class="fas fa-save"></i> Lihat</button>
-                        <button type="reset" class="btn btn-warning text-white mt-3"><i class="fas fa-redo"></i> Reset</button>
+                        <div class="row mt-4">
+                            <div class="col mb-2">
+                                <label for="priodeAkhir" class="mb-1">Jenis Transaksi</label>
+                                <select name="jenis_transaksi" id="jenisTransaksi" class="form-control">
+                                    <option value="tunai">Tunai</option>
+                                    <option value="kredit">Kredit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success text-white mt-3"><i class="fas fa-save"></i>
+                            Lihat</button>
+                        <button type="reset" class="btn btn-warning text-white mt-3"><i class="fas fa-redo"></i>
+                            Reset</button>
                     </form>
                 </div>
             </div>

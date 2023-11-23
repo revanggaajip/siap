@@ -12,18 +12,18 @@ class PenggunaSeeder extends Seeder
         $pengguna  = new Pengguna;
         $pengguna->insertBatch([
             [
-                'nama_pengguna' => 'Pemilik',
-                'tanggal_lahir_pengguna' => '2022-01-01',
-                'username_pengguna' => 'pemilik',
-                'password_pengguna' => password_hash('pemilik', PASSWORD_DEFAULT),
-                'hak_akses_pengguna' => 'Pemilik'
+                'nama' => 'admin',
+                'tanggal_lahir' => '2023-01-01',
+                'username' => 'admin',
+                'password' => password_hash('admin', PASSWORD_DEFAULT),
+                'hak_akses' => 'Admin'
             ],
             [
-                'nama_pengguna' => 'Admin',
-                'tanggal_lahir_pengguna' => '2022-01-01',
-                'username_pengguna' => 'admin',
-                'password_pengguna' => password_hash('admin', PASSWORD_DEFAULT),
-                'hak_akses_pengguna' => 'Admin'
+                'nama' => 'user',
+                'tanggal_lahir' => '2023-01-01',
+                'username' => 'user',
+                'password' => password_hash('user', PASSWORD_DEFAULT),
+                'hak_akses' => 'User'
             ]
         ]);
     }

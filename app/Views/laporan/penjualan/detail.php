@@ -16,6 +16,7 @@
                     <?= csrf_field(); ?>
                     <input type="hidden" name="periode_awal" value="<?= $periode_awal; ?>">
                     <input type="hidden" name="periode_akhir" value="<?= $periode_akhir; ?>">
+                    <input type="hidden" name="jenis_transaksi" value="<?= $jenis_transaksi; ?>">
                     <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Cetak</button>
                 </form>
             </div>
@@ -31,6 +32,7 @@
                             <th>Harga</th>
                             <th>Quantity</th>
                             <th>Subtotal</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,8 +44,15 @@
                             <td><?= rupiah($laporan['harga_barang']); ?></td>
                             <td><?= $laporan['quantity_barang']; ?> <?= $laporan['satuan_barang']; ?></td>
                             <td><?= rupiah($laporan['harga_barang'] * $laporan['quantity_barang']); ?></td>
+                            <?php if($laporan['jenis_transaksi'] == 'Tunai') : ?>
+                            <td><a href="<?= base_url('transaksi-tunai/bill/' . $laporan['id_transaksi_header']); ?>"
+                                    class="btn btn-info text-white"><i class="fas fa-clipboard-list"></i> Nota</a></td>
+                            <?php else : ?>
+                            <td><a href="<?= base_url('transaksi-kredit/bill/' . $laporan['id_transaksi_header']); ?>"
+                                    class="btn btn-info text-white"><i class="fas fa-clipboard-list"></i> Nota</a></td>
+                            <?php endif; ?>
                         </tr>
-                        <?php endforeach; ?>                    
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -61,8 +70,8 @@
 <script src="<?= base_url('vendors/dataTables/js/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?= base_url('vendors/dataTables/js/dataTables.bootstrap4.min.js'); ?>"></script>
 <script>
-    $(document).ready(()=> {
-        $("#dataTable").DataTable();
-    });
+$(document).ready(() => {
+    $("#dataTable").DataTable();
+});
 </script>
 <?php $this->endSection(); ?>

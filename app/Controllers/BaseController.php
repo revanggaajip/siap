@@ -56,7 +56,7 @@ class BaseController extends Controller
     {
         return [
             'mainUrl' => base_url('/'),
-            'mainName' => 'SIAP',
+            'mainName' => config('App')->name,
             'selectedMenu' => $selectedMenu
         ];
     }

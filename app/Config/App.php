@@ -23,6 +23,9 @@ class App extends BaseConfig
      *
      * @var string
      */
+    public $name = 'Simfar';
+    public $nim = '';
+    public $author = 'Mahasiswa';
     public $baseURL = 'http://localhost:8080/';
 
     /**
@@ -36,7 +39,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $indexPage = 'index.php';
+    public $indexPage = '';
 
     /**
      * --------------------------------------------------------------------------

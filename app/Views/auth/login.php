@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="id">
-  <head>
+
+<head>
     <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Login - SIAP</title>
+    <title>Login - <?= config('App')->name; ?></title>
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -31,40 +31,44 @@
     <link rel="stylesheet" href="<?= base_url('vendors/fontawesome/css/all.min.css'); ?>">
     <!-- Main styles for this application-->
     <link href="<?= base_url('css/style.min.css') ?>" rel="stylesheet">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-4">
-            <div class="card-group d-block d-md-flex row">
-              <div class="card col-md-7 p-4 mb-0">
-                <form action="<?= base_url('/login'); ?>" method="post">
-                <?= csrf_field(); ?>
-                <div class="card-body">
-                  <h1>Login</h1>
-                  <?= $this->include('layouts/_partials/notification'); ?>
-                  <p class="text-medium-emphasis">Silahkan input username dan password</p>
-                  <div class="input-group mb-3">
-                      <span class="input-group-text"><i class="fas fa-user icon"></i></span>
-                    <input class="form-control" type="text" placeholder="Username" name="username">
-                  </div>
-                  <div class="input-group mb-4">
-                      <span class="input-group-text"><i class="fas fa-lock icon"></i></span>
-                    <input class="form-control" type="password" placeholder="Password" name="password">
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <button class="btn btn-primary px-4" type="submit"><i class="fas fa-arrow-circle-right"></i> Login</button>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <div class="card-group d-block d-md-flex row">
+                        <div class="card col-md-7 p-4 mb-0">
+                            <form action="<?= route_to('login.store') ?>" method="post">
+                                <?= csrf_field(); ?>
+                                <div class="card-body">
+                                    <h1>Login</h1>
+                                    <?= $this->include('layouts/_partials/notification'); ?>
+                                    <p class="text-medium-emphasis">Silahkan input username dan password</p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                        <input class="form-control" type="text" placeholder="Username" name="username">
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <span class="input-group-text"><i class="fas fa-lock icon"></i></span>
+                                        <input class="form-control" type="password" placeholder="Password"
+                                            name="password">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary px-4" type="submit"><i
+                                                    class="fas fa-arrow-circle-right"></i> Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                </form>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </body>
+</body>
+
 </html>
