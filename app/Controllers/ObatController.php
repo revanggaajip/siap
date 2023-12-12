@@ -31,12 +31,12 @@ class ObatController extends BaseController
         $data['listSatuan'] = $this->satuan->findAll();
         $data['listJenis'] = $this->jenis->findAll();
         $data['listKategori'] = $this->kategori->findAll();
-        $jumlahObat = $this->obat->countAll();
-        if ($jumlahObat > 0) {
-            $data['id'] = 'OBT-'.sprintf("%03s", ++$jumlahObat);
-        } else {
-            $data['id'] = 'OBT-001';
-        }
+        // $jumlahObat = $this->obat->countAll();
+        // if ($jumlahObat > 0) {
+        //     $data['id'] = 'OBT-'.sprintf("%03s", ++$jumlahObat);
+        // } else {
+        //     $data['id'] = 'OBT-001';
+        // }
         return view('obat/index', $data);
     }
     

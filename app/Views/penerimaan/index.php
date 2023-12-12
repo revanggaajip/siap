@@ -22,7 +22,7 @@
                             <th>No Faktur</th>
                             <th>Surat Pemesanan</th>
                             <th>Nama Supplier</th>
-                            <th>Taggal</th>
+                            <th>Tanggal</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

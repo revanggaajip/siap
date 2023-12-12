@@ -11,8 +11,9 @@ class PenerimaanDetailTable extends Migration
         $this->forge->addField([
             'id' => ['type' => 'bigint', 'constraint' => 20, 'unsigned' => true, 'auto_increment' => true],
             'id_penerimaan_header' => ['type' => 'bigint', 'constraint' => 20],
-            'id_obat' => ['type' => 'char', 'constraint' => 7],
+            'id_obat' => ['type' => 'char', 'constraint' => 10],
             'quantity' => ['type' => 'int', 'constraint' => 5],
+            'kadaluarsa' => ['type' => 'date'],
             'created_at' => ['type' => 'DATETIME', 'null' => true],
             'updated_at' => ['type' => 'DATETIME', 'null' => true]            
         ]);

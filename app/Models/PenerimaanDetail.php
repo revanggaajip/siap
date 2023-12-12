@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PenerimaanDetail extends Model
 {
     protected $table            = 'penerimaan_detail';
-    protected $allowedFields    = ['id', 'id_penerimaan_header', 'id_obat', 'quantity'];
+    protected $allowedFields    = ['id', 'id_penerimaan_header', 'id_obat', 'quantity', 'kadaluarsa'];
 
     // Dates
     protected $useTimestamps = true;

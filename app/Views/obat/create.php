@@ -12,7 +12,7 @@
                     <div class="row mb-2">
                         <div class="col-6">
                             <label for="id" class="form-label">Id</label>
-                            <input type="text" class="form-control" name="id" id="id" value="<?= $id; ?>" readonly>
+                            <input type="text" class="form-control" name="id" id="id" maxlength="10">
                         </div>
                         <div class="col-6">
                             <label for="nama" class="form-label">Nama</label>
@@ -58,12 +58,13 @@
                     <div class="row mb-2">
                         <div class="col-6">
                             <label for="kapasitas" class="form-label">Kapasitas</label>
-                            <input type="text" class="form-control" id="kapasitas" placeholder="500 ML"
+                            <input type="text" class="form-control" id="kapasitas" placeholder="Masukkan kapasitas obat"
                                 name="kapasitas">
                         </div>
                         <div class="col-6">
                             <label for="harga" class="form-label">Harga</label>
-                            <input type="number" class="form-control" id="harga" name="harga">
+                            <input type="number" class="form-control" id="harga" name="harga"
+                                placeholder="Masukkan harga obat">
                         </div>
                     </div>
                     <div class="row mb-2">

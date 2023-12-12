@@ -11,6 +11,7 @@
                     <i class="fas fa-capsules nav-icon"></i> Master Obat</a>
                 <ul class="nav-group-items">
                     <li class="nav-item"><a class="nav-link" href="<?= route_to('obat.index') ?>"> Obat</a></li>
+                    <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                     <li class="nav-item"><a class="nav-link" href="<?= route_to('jenis.index') ?>"> Jenis Obat</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= route_to('kategori.index') ?>"> Kategori Obat</a>
                     </li>
@@ -18,19 +19,21 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="<?= route_to('satuan.index') ?>"> Satuan Obat</a>
                     </li>
-                </ul>
-            </li>
-            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-                    <i class="fas fa-shopping-cart nav-icon"></i> Penjualan Obat</a>
-                <ul class="nav-group-items">
-                    <li class="nav-item"><a class="nav-link" href="<?= route_to('penjualan.create') ?>"> Input
-                            Penjualan</a></li>
-                    <?php if(session('hak_akses_pengguna') == 'Admin') :?>
-                    <li class="nav-item"><a class="nav-link" href="<?= route_to('penjualan.index') ?>"> Data
-                            Penjualan</a></li>
                     <?php endif ?>
                 </ul>
             </li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <i class="fas fa-shopping-cart nav-icon"></i> Pengeluaran Obat</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="<?= route_to('penjualan.create') ?>"> Input
+                            Pengeluaran</a></li>
+                    <?php if(session('hak_akses_pengguna') == 'Admin') :?>
+                    <li class="nav-item"><a class="nav-link" href="<?= route_to('penjualan.index') ?>"> Data
+                            Pengeluaran</a></li>
+                    <?php endif ?>
+                </ul>
+            </li>
+            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
                     <i class="fas fa-book nav-icon"></i> Penerimaan Obat</a>
                 <ul class="nav-group-items">
@@ -40,7 +43,7 @@
                             Penerimaan</a></li>
                 </ul>
             </li>
-
+            <?php endif ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?= route_to('opname.index') ?>">
                     <i class="fas fa-pencil-alt nav-icon"></i>Stok Opname

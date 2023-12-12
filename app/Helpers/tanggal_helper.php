@@ -5,7 +5,7 @@ function tanggal($tgl) {
 
     $hari = date('d', strtotime($tgl));
     $bulan = date('m', strtotime($tgl));
-    $bulan = $namaBulan[$bulan +1];
+    $bulan = $namaBulan[$bulan - 1];
     $tahun = date('Y', strtotime($tgl));
 
     return $hari." ".$bulan." ".$tahun;

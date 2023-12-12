@@ -74,6 +74,7 @@
                                 <th width="50%">Nama Obat</th>
                                 <th>Satuan</th>
                                 <th>Quantity</th>
+                                <th>Kadaluarsa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,6 +84,7 @@
                                 <td><?= $penerimaan['nama']; ?></td>
                                 <td><?= $penerimaan['satuan']; ?></td>
                                 <td><?= $penerimaan['quantity']; ?></td>
+                                <td><?= tanggal($penerimaan['kadaluarsa']); ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

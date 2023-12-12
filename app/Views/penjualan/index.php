@@ -16,24 +16,67 @@
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="idPenjualanHeader" class="form-label">ID Transaksi</label>
+                            <label for="idPenjualanHeader" class="form-label">ID Pengeluaran</label>
                             <input type="text" class="form-control" name="id_penjualan_header" id="idPenjualanHeader"
                                 value="<?= $id; ?>" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="tanggal" class="form-label">Tanggal Transaksi</label>
+                            <label for="tanggal" class="form-label">Tanggal Pengeluaran</label>
                             <input type="date" class="form-control" name="tanggal" id="tanggal"
                                 value="<?= date('Y-m-d'); ?>">
                         </div>
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="namaPasien" class="form-label">Nama Pasien</label>
                             <input type="text" class="form-control" name="nama" id="namaPasien">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="umurPasien" class="form-label">Umur</label>
+                            <input type="text" class="form-control" name="umur" id="umurPasien">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="kartuKeluarga" class="form-label">KK</label>
+                            <input type="text" class="form-control" name="kk" id="kartuKeluarga">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rm" class="form-label">No. Rekam Medis</label>
+                            <input type="text" class="form-control" name="rm" id="rm">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="kartuBPJS" class="form-label">No. Kartu BPJS</label>
+                            <input type="text" class="form-control" name="bpjs" id="kartuBPJS">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dokter" class="form-label">Dokter Rekomendasi</label>
+                            <input type="text" class="form-control" name="dokter" id="dokter">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -41,7 +84,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="keterangan" class="form-label">Keterangan</label>
-                            <textarea name="keterangan" id="keterangan" cols="30" rows="4"
+                            <textarea name="keterangan" id="keterangan" cols="30" rows="3"
                                 class="form-control"></textarea>
                         </div>
                     </div>
@@ -217,13 +260,10 @@ function cekSubtotal() {
     }
 }
 
-function seleksi()
-{
+function seleksi() {
     $('#namaObat').select2({
         dropdownParent: $("#tambahKeranjangModal")
     });
 }
-
-
 </script>
 <?php $this->endSection(); ?>

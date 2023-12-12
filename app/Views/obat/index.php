@@ -12,10 +12,12 @@ Obat
                 <h5>
                     <?= $title; ?>
                 </h5>
+                <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                 <button type="button" class="btn btn-primary btn-sm" data-coreui-toggle="modal"
                     data-coreui-target="#tambahData">
                     <i class="fas fa-plus"></i>&nbsp;Tambah
                 </button>
+                <?php endif; ?>
             </div>
         </div>
         <div class="card-body">
@@ -24,6 +26,7 @@ Obat
                     <thead class="table-dark">
                         <tr>
                             <th width="15">No</th>
+                            <th>Kode</th>
                             <th>Nama</th>
                             <th>Stok</th>
                             <th>Harga</th>
@@ -32,13 +35,16 @@ Obat
                             <th>Jenis</th>
                             <th>Kategori</th>
                             <th>Golongan</th>
+                            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                             <th width="17%">Aksi</th>
+                            <?php endif ?>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($listObat as $key => $obat) :?>
                         <tr>
                             <td><?= $key+1; ?></td>
+                            <td><?= $obat['id']; ?></td>
                             <td><?= $obat['nama']; ?></td>
                             <td><?= $obat['stok']; ?></td>
                             <td><?= rupiah($obat['harga']); ?></td>
@@ -47,6 +53,7 @@ Obat
                             <td><?= $obat['jenis']; ?></td>
                             <td><?= $obat['kategori']; ?></td>
                             <td><?= $obat['golongan']; ?></td>
+                            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                             <td>
                                 <!-- Tombol Edit -->
                                 <button type="button" class="btn btn-warning btn-sm text-white"
@@ -141,11 +148,12 @@ Obat
                                                         </div>
                                                     </div>
                                                     <div class="row mb-2">
-                        <div class="col-6">
-                            <label for="minStok" class="form-label">Minimal Stok</label>
-                            <input type="number" id="minStok" name="min_stok" class="form-control">
-                        </div>
-                    </div>
+                                                        <div class="col-6">
+                                                            <label for="minStok" class="form-label">Minimal Stok</label>
+                                                            <input type="number" id="minStok" name="min_stok"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
                                                     <div class="row mb-2">
                                                         <div class="col">
                                                             <label for="kandungan" class="form-label">Kandungan</label>
@@ -206,6 +214,7 @@ Obat
                                 </div>
                                 <!-- Akhir Modal Hapus -->
                             </td>
+                            <?php endif; ?>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -232,5 +241,14 @@ Obat
 $(document).ready(() => {
     $("#dataTable").DataTable();
 });
+
+// function rupiah() {
+//     $("#harga").change(() => {
+//         let reverse = angka.toString().split('').reverse().join(''),
+//             ribuan = reverse.match(/\d{1,3}/g);
+//         ribuan = ribuan.join('.').split('').reverse().join('');
+//         angka.value = ribuan
+//     })
+// }
 </script>
 <?php $this->endSection(); ?>

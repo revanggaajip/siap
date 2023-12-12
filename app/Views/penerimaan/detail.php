@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="sp" class="form-label">No. Surat Pemesanan</label>
-                        <input type="text" class="form-control" name="sp" id="sp">
+                        <input type="text" class="form-control" name="sp" id="sp" value="<?= $header["sp"]?>">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -53,6 +53,7 @@
                             <th width="50%">Nama Obat</th>
                             <th width="50px">Satuan</th>
                             <th width="50px">Quantity</th>
+                            <th width="50px">Kadaluarsa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,6 +63,7 @@
                             <td><?= $penerimaan['nama']; ?></td>
                             <td><?= $penerimaan['satuan']; ?></td>
                             <td><?= $penerimaan['quantity']; ?></td>
+                            <td><?= date('d-m-Y', strtotime($penerimaan['kadaluarsa'])); ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

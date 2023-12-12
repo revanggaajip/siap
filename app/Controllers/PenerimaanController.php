@@ -62,11 +62,13 @@ class PenerimaanController extends BaseController
             for ($i=0; $i < $jumlah; $i++) { 
                 $id_obat = $this->request->getVar('id_obat')[$i];
                 $quantity = $this->request->getVar('quantity')[$i];
+                $kadaluarsa = $this->request->getVar('kadaluarsa')[$i];
                 if ($quantity == true) {
                     $data = [
                         'id_penerimaan_header' => $this->header->getInsertID(),
                         'id_obat' => $id_obat,
-                        'quantity' => $quantity
+                        'quantity' => $quantity,
+                        'kadaluarsa' => $kadaluarsa
                     ];
                     $this->detail->save($data);
 
@@ -113,7 +115,8 @@ class PenerimaanController extends BaseController
         // $data['listObat'] = $this->obat->where('stok >', 0)->get()->getResultArray();
         $data['breadcrumb'] = $this->breadcrumb($this->title);
         $data['header'] = $this->header->find($id);
-        $data['dataPenerimaan'] = $this->detail->select('penerimaan_detail.id, obat.nama, obat.satuan, penerimaan_detail.quantity')->join('obat', 'obat.id = penerimaan_detail.id_obat')->where('id_penerimaan_header', $id)->findAll();
+        $data['dataPenerimaan'] = $this->detail->select('penerimaan_detail.id, obat.nama, obat.satuan, penerimaan_detail.quantity, penerimaan_detail.kadaluarsa')->join('obat', 'obat.id = penerimaan_detail.id_obat')->where('id_penerimaan_header', $id)->findAll();
+        // dd($data);
         return view('penerimaan/detail', $data);
     }
 

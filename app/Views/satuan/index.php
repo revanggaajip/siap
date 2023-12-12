@@ -12,10 +12,12 @@ satuan
                 <h5>
                     <?= $title; ?>
                 </h5>
+                <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                 <button type="button" class="btn btn-primary btn-sm" data-coreui-toggle="modal"
                     data-coreui-target="#tambahData">
                     <i class="fas fa-plus"></i>&nbsp;Tambah
                 </button>
+                <?php endif ?>
             </div>
         </div>
         <div class="card-body">
@@ -25,7 +27,9 @@ satuan
                         <tr>
                             <th width="15">No</th>
                             <th>Nama Satuan</th>
+                            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                             <th width="17%">Aksi</th>
+                            <?php endif ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,19 +37,19 @@ satuan
                         <tr>
                             <td><?= $key+1; ?></td>
                             <td><?= $satuan['nama']; ?></td>
+                            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                             <td>
                                 <!-- Tombol Edit -->
                                 <button type="button" class="btn btn-warning btn-sm text-white"
-                                    data-coreui-toggle="modal"
-                                    data-coreui-target="#editData_<?= $satuan['id']; ?>">
+                                    data-coreui-toggle="modal" data-coreui-target="#editData_<?= $satuan['id']; ?>">
                                     <i class="fas fa-edit"></i>&nbsp;Ubah
                                 </button>
                                 <!-- Akhir Tombol Edit -->
 
                                 <!-- Modal Edit -->
-                                <div class="modal fade" id="editData_<?= $satuan['id'] ?>"
-                                    data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1"
-                                    aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="editData_<?= $satuan['id'] ?>" data-coreui-backdrop="static"
+                                    data-coreui-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel"
+                                    aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -81,8 +85,7 @@ satuan
 
                                 <!-- Tombol Hapus -->
                                 <button type="button" class="btn btn-danger btn-sm text-white"
-                                    data-coreui-toggle="modal"
-                                    data-coreui-target="#hapusData_<?= $satuan['id']; ?>">
+                                    data-coreui-toggle="modal" data-coreui-target="#hapusData_<?= $satuan['id']; ?>">
                                     <i class="fas fa-trash"></i>&nbsp;Hapus
                                 </button>
                                 <!-- Akhir Tombol Hapus -->
@@ -119,6 +122,7 @@ satuan
                                 </div>
                                 <!-- Akhir Modal Hapus -->
                             </td>
+                            <?php endif ?>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

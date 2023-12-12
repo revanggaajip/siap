@@ -12,10 +12,12 @@ Kategori
                 <h5>
                     <?= $title; ?>
                 </h5>
+                <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                 <button type="button" class="btn btn-primary btn-sm" data-coreui-toggle="modal"
                     data-coreui-target="#tambahData">
                     <i class="fas fa-plus"></i>&nbsp;Tambah
                 </button>
+                <?php endif ?>
             </div>
         </div>
         <div class="card-body">
@@ -25,7 +27,9 @@ Kategori
                         <tr>
                             <th width="15">No</th>
                             <th>Nama Kategori</th>
+                            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                             <th width="17%">Aksi</th>
+                            <?php endif ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +37,7 @@ Kategori
                         <tr>
                             <td><?= $key+1; ?></td>
                             <td><?= $kategori['nama']; ?></td>
+                            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                             <td>
                                 <!-- Tombol Edit -->
                                 <button type="button" class="btn btn-warning btn-sm text-white"
@@ -117,6 +122,7 @@ Kategori
                                 </div>
                                 <!-- Akhir Modal Hapus -->
                             </td>
+                            <?php endif ?>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

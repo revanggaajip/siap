@@ -12,7 +12,7 @@ class ObatTable extends Migration
         $this->forge->addField([
             'id'   => [
                 'type'          => 'CHAR',
-                'constraint'    => 7,
+                'constraint'    => 10,
             ],
             'nama'          => [
                 'type'          => 'VARCHAR',

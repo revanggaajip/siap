@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="card">
         <form action="<?= route_to('penerimaan.store'); ?>" method="post">
-        <?= csrf_field() ?>
+            <?= csrf_field() ?>
             <div class="card-header">
                 <h5>
                     <?= $title; ?>
@@ -25,7 +25,8 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="tanggal" class="form-label">Tanggal</label>
-                            <input type="date" class="form-control" name="tanggal" id="tanggal" value="<?= date('Y-m-d') ?>">
+                            <input type="date" class="form-control" name="tanggal" id="tanggal"
+                                value="<?= date('Y-m-d') ?>">
                         </div>
                     </div>
                 </div>
@@ -52,6 +53,7 @@
                                 <th>Nama Obat</th>
                                 <th width="50px">Satuan</th>
                                 <th width="50px">Quantity</th>
+                                <th width="50px">Kadaluarsa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,6 +64,7 @@
                                 <td><?= $obat['nama']; ?></td>
                                 <td><?= $obat['satuan']; ?></td>
                                 <td><input type="text" class="form-control" name="quantity[]"></td>
+                                <td><input type="date" class="form-control" name="kadaluarsa[]"></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

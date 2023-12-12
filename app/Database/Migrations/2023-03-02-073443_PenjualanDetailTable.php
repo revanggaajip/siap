@@ -11,7 +11,7 @@ class PenjualanDetailTable extends Migration
         $this->forge->addField([
             'id' => ['type' => 'bigint', 'constraint' => 20, 'unsigned' => true, 'auto_increment' => true],
             'id_penjualan_header' => ['type' => 'char', 'constraint' => 22],
-            'id_obat' => ['type' => 'char', 'constraint' => 7],
+            'id_obat' => ['type' => 'char', 'constraint' => 10],
             'quantity' => ['type' => 'int', 'constraint' => 5],
             'subtotal' => ['type' => 'bigint', 'constraint' => 20],
             'created_at' => ['type' => 'DATETIME', 'null' => true],

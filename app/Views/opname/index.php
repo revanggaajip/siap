@@ -21,7 +21,9 @@ Stock Opname
                                 <th width="15">No</th>
                                 <th>Nama Obat</th>
                                 <th width="50px">Stok Sistem</th>
+                                <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                                 <th width="50px">Stok Asli</th>
+                                <?php endif ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,13 +33,16 @@ Stock Opname
                                 <td><?= $key+1; ?></td>
                                 <td><?= $obat['nama']; ?></td>
                                 <td><?= $obat['stok']; ?></td>
+                                <?php if(session('hak_akses_pengguna') == 'Admin') :?>
                                 <td><input type="text" class="form-control" name="stok[]"></td>
+                                <?php endif ?>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <?php if(session('hak_akses_pengguna') == 'Admin') :?>
             <div class="card-footer">
                 <div class="d-flex justify-content-between">
                     <a href="<?= route_to('home.index'); ?>" class="btn btn-danger text-white"><i
@@ -46,6 +51,7 @@ Stock Opname
                     <button type="submit" class="btn btn-success text-white"><i class="fas fa-save"></i> Simpan</button>
                 </div>
             </div>
+            <?php endif ?>
         </form>
     </div>
 </div>
